@@ -2,14 +2,18 @@
   "name": "powderlines",
   "version": "0.0.1",
   "dependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "*",
     "grunt-contrib-less": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-copy": "*",
-    "bower": "*",
-    "grunt-exec": "*"
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-shell": "*",
+    "grunt-exec": "*",
+    "bower": "*"
   },
   "engines": {
-    "npm": "1.2.x"
+    "npm": "*"
   }
 }

@@ -1,0 +1,37 @@
+---
+layout: default
+title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for this weekend
+---
+
+<div class="hero-wrapper">
+  <div class="hero section">
+    <div class="row">
+      <div class="medium-10 medium-offset-1 columns">
+        <div class="logo">Powderlines</div>
+        <h3>The Pacific Northwest&rsquo;s best backcountry tours for this weekend.</h3>
+        <p>Finding the best place to backcountry ski or splitboard can be difficult. Our goal is to make it easy to find a great backcountry tour given the current conditions.</p>
+      </div>
+    </div>
+    <a href="#" class="scroll-arrow">Next</a>
+  </div>
+  <div class="social">
+    keep updated
+    <a href="#" class="icon-twitter">Twitter</a>
+    <a href="#" class="icon-facebook">Facebook</a>
+    <a href="#" class="icon-newsletter">Newsletter</a>
+    follow us
+  </div>
+</div>
+
+
+<ul class="posts">
+  {% for post in site.posts %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+
+
+<div class="partners">
+  <small>a word from our sponsors</small>
+  
+</div>

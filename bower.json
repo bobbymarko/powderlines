@@ -1,13 +1,13 @@
 {
   "name": "powderlines",
   "version": "0.0.1",
+  "directory" : "components",
   "dependencies": {
-    "bootstrap": "~2.3.2",
-    "jquery": "~1.8.0"
+    "foundation": "*",
+    "jquery": "*"
   },
   "ignore": [
     "**/.*",
-    "node_modules",
-    "components"
+    "node_modules"
   ]
 }

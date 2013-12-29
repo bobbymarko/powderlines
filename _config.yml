@@ -1,0 +1,5 @@
+name: powderlines
+markdown: redcarpet
+pygments: true
+exclude: ['node_modules']
+permalink: none
