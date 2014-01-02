@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Skyline Ridge"
 date:   2013-12-26 15:15:55
 categories: jekyll update
 ---

@@ -60,6 +60,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
   @include sprite-replace-text-with-dimensions($element-sprite, 'scroll-arrow');
   position: absolute;
   bottom: 2rem;
+  margin-left: -18px;
 }
 
 .social {
@@ -97,6 +98,10 @@ $element-sprite: sprite-map("elements-1x/*.png");
 
 .partners {
   background: $white;
-  padding: 1rem;
+  padding: 2rem 1rem;
   text-align: center;
+  small {
+    display: block;
+    margin: 0 0 1rem;
+  }
 }
