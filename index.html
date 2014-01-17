@@ -4,11 +4,12 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
 ---
 
 <div class="hero-wrapper">
+  <div class="hero-background"></div>
   <div class="hero section">
     <div class="row">
       <div class="medium-10 medium-offset-1 columns">
         <div class="logo">Powderlines</div>
-        <h3>Coming soon: The Pacific Northwest&rsquo;s best backcountry tours.</h3>
+        <h3>The Pacific Northwest&rsquo;s best backcountry tours</h3>
         <p>Finding the best place to backcountry ski or splitboard can be difficult. Our goal is to make it easy to find a great backcountry tour given the current conditions.</p>
       </div>
     </div>
@@ -23,23 +24,19 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
   </div>
 </div>
 
-<!--
-<div class="section">
-  <div class="row">
-    <div class="small-12 columns"
-      <ul class="posts">
-        {% for post in site.posts %}
-          <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endfor %}
-      </ul>
+{% for post in site.posts %}
+  <div class="section tour" style="background-image:url(/assets/img/{{post.image}});">
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="badge">
+          <a class="badge-inner" href="{{ post.url }}">
+            <div class="badge-background" style="background-image:url(/assets/img/{{post.image}});"></div>
+            {{ post.title }}
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
--->
+{% endfor %}
 
-<div class="partners">
-  <small>a word from our sponsors</small>
-  <a href="http://www.tkqlhce.com/click-7192516-10285443" target="_blank">
-    <img src="http://www.tqlkg.com/image-7192516-10285443" width="728" height="90" alt="Dynamic Banner" border="0"/>
-  </a>
-</div>
+{% include ad.html %}

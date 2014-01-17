@@ -12,6 +12,14 @@ grunt.initConfig({
     css: {
       files: ['assets/scss/*.scss'],
       tasks: ['compass', 'copy:css', 'copy:images']
+    },
+    js: {
+      files: ['assets/scripts/*.js'],
+      tasks: ['uglify', 'copy:js']
+    },
+    js: {
+      files: ['assets/gpx/*.gpx'],
+      tasks: ['copy:gpx']
     }
   },
   compass: {
@@ -22,19 +30,11 @@ grunt.initConfig({
     }
   },
   uglify: {
-    jquery: {
+    app: {
       files: {
-        'assets/js/jquery.min.js': 'components/jquery/jquery.js'
+        'assets/js/main.js': ['components/jquery/jquery.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js']
       }
-    }/*,
-    bootstrap: {
-      files: {
-        'assets/js/bootstrap.min.js': ['components/bootstrap/js/bootstrap-collapse.js',
-                                       'components/bootstrap/js/bootstrap-scrollspy.js',
-                                       'components/bootstrap/js/bootstrap-button.js',
-                                       'components/bootstrap/js/bootstrap-affix.js']
-      }
-    }*/
+    }
   },
   copy: {
     /*bootstrap: {
@@ -42,8 +42,16 @@ grunt.initConfig({
         {expand: true, cwd: 'components/bootstrap/img/', src: ['**'], dest: 'assets/img/'}
       ]
     },*/
+    gpx: {
+      src: 'assets/gpx/**',
+      dest: '_site/'
+    },
     css: {
       src: 'assets/css/**',
+      dest: '_site/'
+    },
+    js: {
+      src: 'assets/js/**',
       dest: '_site/'
     },
     fonts: {

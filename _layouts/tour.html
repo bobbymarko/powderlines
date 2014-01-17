@@ -1,0 +1,77 @@
+---
+layout: default
+---
+<a href="/" class="home">Powderlin.es</a>
+<div class="tour-header" style="background-image:url(/assets/img/{{page.image}});">
+  <div class="row">
+    <div class="small-12 columns">
+        <h1>
+          {{ page.title }}
+          <small>
+          {{ page.distance }}
+          </small>
+        </h1>
+        <ul class="inline-list">
+          <li>Elevation gain: {{ page.elevation-gain }}</li>
+          <li>Highest elevation: {{ page.highest-elevation }}</li>
+          <li>Starting elevation: {{ page.starting-elevation }}</li>
+        </ul>
+                  
+          
+          
+    </div>
+  </div>
+</div>
+  
+<div class="row">
+  <div class="small-8 columns">
+    <div class="post">
+    {{ content }}
+    </div>
+  </div>
+  <div class="small-4 columns">
+    <div class="weathered" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
+  </div>
+</div>
+
+{% include ad.html %}
+
+<div class="row">
+  <div class="small-4 columns">
+    <a href="/assets/gpx/{{page.gpx}}">GPX 1</a>
+  </div>
+  <div class="small-8 columns">
+    <div class="mapped" data-lat="{{page.lat}}" data-long="{{page.long}}" data-gpx="/assets/gpx/{{page.gpx}}"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-6 columns">
+    {{page.report}}
+  </div>
+  <div class="small-6 columns">
+    {{page.video}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-6 columns">
+    gear
+  </div>
+  <div class="small-6 columns">
+    gear
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <script src="http://assets-polarb-com.a.ssl.fastly.net/assets/polar-embedded-ed38f2a7466dbdc3695c3e0327c281e7.js" async="true" data-publisher="bobbymarko" data-poll-set="868"></script>
+  </div>
+</div>
+
+<!--
+    <a href="http://www.tkqlhce.com/click-7192516-10904340" target="_blank">
+      <img src="http://www.tqlkg.com/image-7192516-10904340" width="160" height="600" alt="Dynamic Banner" border="0"/>
+    </a>
+    
+-->
