@@ -24,12 +24,14 @@ layout: default
 </div>
   
 <div class="row">
-  <div class="small-8 columns">
+  <div class="small-12 medium-8 columns">
     <div class="post">
     {{ content }}
+    <h3>Directions</h3>
+    {{ page.directions }}
     </div>
   </div>
-  <div class="small-4 columns">
+  <div class="small-12 medium-4 columns">
     <div class="weathered" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
   </div>
 </div>
@@ -37,28 +39,51 @@ layout: default
 {% include ad.html %}
 
 <div class="row">
-  <div class="small-4 columns">
-    <a href="/assets/gpx/{{page.gpx}}">GPX 1</a>
+  <div class="small-12 columns">
+    <h2>Map &amp; GPX</h2>
   </div>
-  <div class="small-8 columns">
-    <div class="mapped" data-lat="{{page.lat}}" data-long="{{page.long}}" data-gpx="/assets/gpx/{{page.gpx}}"></div>
+  <div class="small-12 medium-4 columns">
+    <ul>
+    {% for gpx in page.gpx %}
+      <li>
+        <a href="/assets/gpx/{{ gpx.path }}" class="gpx-file">{{ gpx.name }} <small>{{ gpx.date| date: "%B %-d, %Y" }}</small></a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+  <div class="small-12 medium-8 columns">
+    <div class="mapped" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
   </div>
 </div>
 
 <div class="row">
-  <div class="small-6 columns">
-    {{page.report}}
+  <div class="small-12 medium-6 columns">
+    <h2>Trip reports</h2>
+    <ul>
+      {% for report in page.reports %}
+        <li>
+          <a href="{{ report.url }}" target="_blank">{{ report.name }}</a>
+          <small>{{ report.date | date: "%B %-d, %Y" }}</small>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
-  <div class="small-6 columns">
-    {{page.video}}
+  <div class="small-12 medium-6 columns">
+    <h2>Videos</h2>
+      {% for video in page.videos %}
+        {% oembed {{video.url}} %}
+      {% endfor %}
   </div>
 </div>
 
 <div class="row">
-  <div class="small-6 columns">
+  <div class="small-12 columns">
+    <h2>Gear</h2>
+  </div>
+  <div class="small-12 medium-6 columns">
     gear
   </div>
-  <div class="small-6 columns">
+  <div class="small-12 medium-6 columns">
     gear
   </div>
 </div>

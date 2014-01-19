@@ -11,7 +11,7 @@ $(function(){
       cache: false,
       jsonpCallback: "weather",
       success: function(data) {
-        console.log(data);
+//        console.log(data);
         var currentTemp = data.currentobservation.Temp + '&deg;';
         var weatherText = data.data.text;
         var weatherTemp = data.data.temperature;
@@ -30,7 +30,7 @@ $(function(){
         $this.html(output);
       },
       error: function(error) {
-        console.log(error);
+        //console.log(error);
       }
     })
   });

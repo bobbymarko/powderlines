@@ -3,7 +3,8 @@ $(function() {
     var $this = $(this);
     var lat = $this.attr('data-lat');
     var lon = $this.attr('data-long');
-    var gpx = $this.attr('data-gpx');
+    var $gpx = $('.gpx-file');
+    var colors = ['red','blue','yellow','lime'];
     var tileServer = 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png';
     var tileServer = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
     //var tileServer = 'http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg';
@@ -22,16 +23,23 @@ $(function() {
     
     //https://github.com/mpetazzoni/leaflet-gpx
     $.getScript('/assets/scripts/gpx.js', function() {
-      new L.GPX(gpx, {
-        async: true,
-        marker_options: {
-          startIconUrl: '/assets/img/pin-icon-start.png',
-          endIconUrl: '/assets/img/pin-icon-end.png',
-          shadowUrl: '/assets/img/pin-shadow.png'
-        }
-      }).on('loaded', function(e) {
-        map.fitBounds(e.target.getBounds());
-      }).addTo(map);
+      $gpx.each(function() {
+        var path = new L.GPX($(this).attr('href'), {
+          async: true,
+          polyline_options: {
+            color: colors[Math.floor(Math.random() * colors.length)]
+          },
+          marker_options: {
+            startIconUrl: '/assets/img/pin-icon-start.png',
+            endIconUrl: '/assets/img/pin-icon-end.png',
+            shadowUrl: '/assets/img/pin-shadow.png'
+          }
+        }).on('loaded', function(e) {
+          map.fitBounds(e.target.getBounds());
+        }).on('click', function(e) {
+          //console.log(e);
+        }).addTo(map);
+      });
     });
   });
 });

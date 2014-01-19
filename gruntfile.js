@@ -17,7 +17,7 @@ grunt.initConfig({
       files: ['assets/scripts/*.js'],
       tasks: ['uglify', 'copy:js']
     },
-    js: {
+    gpx: {
       files: ['assets/gpx/*.gpx'],
       tasks: ['copy:gpx']
     }
