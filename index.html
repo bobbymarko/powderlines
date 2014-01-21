@@ -1,9 +1,16 @@
----
-layout: default
-title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for this weekend
----
-
-<div class="hero-wrapper">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="google-site-verification" content="se9haMbYGgxaSzOOTz-nHwZ3Bw53_-DyhwGwfrfe2AM" />
+    <title>Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for this weekend</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/assets/css/application.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+  </head>
+  <body>
+    <div class="hero-wrapper">
   <div class="hero-background"></div>
   <div class="hero section">
     <div class="row">
@@ -24,19 +31,36 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
   </div>
 </div>
 
-{% for post in site.posts %}
-  <div class="section tour" style="background-image:url(/assets/img/{{post.image}});">
+
+  <div class="section tour" style="background-image:url(/assets/img/skyline-ridge.jpg);">
     <div class="row">
       <div class="small-12 columns">
         <div class="badge">
-          <a class="badge-inner" href="{{ post.url }}">
-            <div class="badge-background" style="background-image:url(/assets/img/{{post.image}});"></div>
-            {{ post.title }}
+          <a class="badge-inner" href="/tour/skyline-ridge.html">
+            <div class="badge-background" style="background-image:url(/assets/img/skyline-ridge.jpg);"></div>
+            Skyline Ridge
           </a>
         </div>
       </div>
     </div>
   </div>
-{% endfor %}
 
-{% include ad.html %}
+
+<div class="partners">
+  <small>a word from our sponsors</small>
+  <a href="http://www.tkqlhce.com/click-7192516-10285443" target="_blank">
+    <img src="http://www.tqlkg.com/image-7192516-10285443" width="728" height="90" alt="Dynamic Banner" border="0"/>
+  </a>
+</div>
+    <script src="/assets/js/main.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46796971-1', 'powderlin.es');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
