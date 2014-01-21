@@ -1,5 +1,5 @@
 name: powderlines
 markdown: redcarpet
 pygments: true
-exclude: ['node_modules']
+exclude: ['node_modules', 'Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
 permalink: none
