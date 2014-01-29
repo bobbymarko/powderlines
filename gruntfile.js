@@ -32,7 +32,7 @@ grunt.initConfig({
   uglify: {
     app: {
       files: {
-        'assets/js/main.js': ['components/jquery/jquery.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js']
+        'assets/js/main.js': ['components/jquery/jquery.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js']
       }
     }
   },

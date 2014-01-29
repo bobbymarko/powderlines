@@ -32,13 +32,17 @@ layout: default
     </div>
   </div>
   <div class="small-12 medium-4 columns">
-    <div class="weathered" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
+    
   </div>
+</div>
+
+<div class="row section-small">
+  <div class="weathered small-12 columns" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
 </div>
 
 {% include ad.html %}
 
-<div class="row">
+<div class="row section-small">
   <div class="small-12 columns">
     <h2>Map &amp; GPX</h2>
   </div>
@@ -46,7 +50,7 @@ layout: default
     <ul>
     {% for gpx in page.gpx %}
       <li>
-        <a href="/assets/gpx/{{ gpx.path }}" class="gpx-file">{{ gpx.name }} <small>{{ gpx.date| date: "%B %-d, %Y" }}</small></a>
+        <a href="/assets/gpx/{{ gpx.path }}" data-gpx-name="{{ gpx.name}}" data-gpx-index="{{ forloop.index }}" class="gpx-file">{{ gpx.name }} <small>{{ gpx.date| date: "%B %-d, %Y" }}</small></a>
       </li>
     {% endfor %}
     </ul>
@@ -56,7 +60,7 @@ layout: default
   </div>
 </div>
 
-<div class="row">
+<div class="row section-small">
   <div class="small-12 medium-6 columns">
     <h2>Trip reports</h2>
     <ul>
@@ -76,15 +80,17 @@ layout: default
   </div>
 </div>
 
-<div class="row">
-  <div class="small-12 columns">
-    <h2>Gear</h2>
-  </div>
-  <div class="small-12 medium-6 columns">
-    gear
-  </div>
-  <div class="small-12 medium-6 columns">
-    gear
+<div class="offset-background">
+  <div class="row section-small">
+    <div class="small-12 columns">
+      <h2>Gear</h2>
+    </div>
+    <div class="small-12 medium-6 columns">
+      gear
+    </div>
+    <div class="small-12 medium-6 columns">
+      gear
+    </div>
   </div>
 </div>
 

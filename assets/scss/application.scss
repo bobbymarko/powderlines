@@ -31,6 +31,14 @@ $element-sprite: sprite-map("elements-1x/*.png");
   position: relative;
 }
 
+.section-small {
+  padding: 4rem 0;
+}
+
+.offset-background {
+  background: $white;
+}
+
 .hero-wrapper {
   position: relative;
 }
@@ -194,4 +202,8 @@ $element-sprite: sprite-map("elements-1x/*.png");
   	width: 100% !important;
   	height: 100% !important;
   }
+}
+
+.gpx-file.selected {
+  background: $white;
 }
