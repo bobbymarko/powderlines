@@ -13,7 +13,7 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
         <p>Finding the best place to backcountry ski or splitboard can be difficult. Our goal is to make it easy to find a great backcountry tour given the current conditions.</p>
       </div>
     </div>
-    <a href="#" class="scroll-arrow">Next</a>
+    <a href="#content" class="scroll-arrow">Next</a>
   </div>
   <div class="social">
     follow us
@@ -24,19 +24,21 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
   </div>
 </div>
 
-{% for post in site.posts %}
-  <div class="section tour" style="background-image:url(/assets/img/{{post.image}});">
-    <div class="row">
-      <div class="small-12 columns">
-        <div class="badge">
-          <a class="badge-inner" href="{{ post.url }}">
-            <div class="badge-background" style="background-image:url(/assets/img/{{post.image}});"></div>
-            {{ post.title }}
-          </a>
+<div id="content">
+  {% for post in site.posts %}
+    <div class="section tour" style="background-image:url(/assets/img/{{post.image}});">
+      <div class="row">
+        <div class="small-12 columns">
+          <div class="badge">
+            <a class="badge-inner" href="{{ post.url }}">
+              <div class="badge-background" style="background-image:url(/assets/img/{{post.image}});"></div>
+              {{ post.title }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-{% endfor %}
+  {% endfor %}
+</div>
 
 {% include ad.html %}

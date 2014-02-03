@@ -11,7 +11,8 @@
     "grunt-contrib-connect": "*",
     "grunt-shell": "*",
     "grunt-exec": "*",
-    "bower": "*"
+    "bower": "*",
+    "grunt-aws-s3": "*"
   },
   "engines": {
     "npm": "*"

@@ -44,7 +44,8 @@ $(function(){
                   "nra": "RAIN",
                   "nsvrtsra": "WIND",
                   "dust": "FOG",
-                  "mist": "FOG"
+                  "mist": "FOG",
+                  "cold": "FOG"
                 }
     
     $.ajax({
@@ -60,14 +61,14 @@ $(function(){
         var weather = data.data.weather;
         var weatherIcon = data.data.iconLink;
         var time = data.time.startPeriodName;
-        var skycons = new Skycons({"color": "white"});
+        var skycons = new Skycons({"color": "#f1ebeb"});
         
         var output = '';//currentTemp;
         
-        output += '<ul class="small-block-grid-6 text-center">';
+        output += '<ul>';
         $.each(weatherText, function(i) {
           var truncatedIcon = weatherIcon[i].replace(/.*?\//g, '').replace(/[0-9]/g,'').replace(/.png/,'')
-          output += '<li><p>' + time[i] + '</p><canvas class="skycon" data-icon="' + icons[truncatedIcon] + '" id="icon-' + i + '" width="120" height="120"></canvas>' + '<p>' + weather[i] + '<br>' + weatherTemp[i] + '&deg;</p></li>';
+          output += '<li><canvas class="skycon left" data-icon="' + icons[truncatedIcon] + '" id="icon-' + i + '" width="40px" height="40px"></canvas><div><h6><strong>' + time[i] + '</strong>: ' + weather[i] + '</h6>' + this + '</div></li>';
         });
         output += '</ul>';
         

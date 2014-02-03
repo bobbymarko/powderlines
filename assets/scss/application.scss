@@ -58,8 +58,6 @@ $element-sprite: sprite-map("elements-1x/*.png");
 
 .hero {
   background: url(/assets/img/powder-texture@1x.png);
-  //@include padding-leader(10);
-  //@include padding-trailer(10);
   text-align: center;
   h3 {
     color: $white;
@@ -70,10 +68,19 @@ $element-sprite: sprite-map("elements-1x/*.png");
 }
 
 .logo {
-  //@include replace-text-with-dimensions('logo@1x.png');
   @include sprite-replace-text-with-dimensions($element-sprite, 'logo');
   margin: 0 auto 2rem;
-  
+}
+
+.logo-small {
+  @include sprite-replace-text($element-sprite, 'logo');
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 99;
+  background-size: 115px 190px;
+  width: 115px;
+  height: 128px;
 }
 
 .scroll-arrow {
@@ -134,17 +141,6 @@ $element-sprite: sprite-map("elements-1x/*.png");
   text-align: center;
 }
 
-.home {
-  width: 4rem;
-  height: 4rem;
-  background: $white;
-  position: absolute;
-  text-indent: -9999px;
-  top: 1rem;
-  left: 1rem;
-  z-index: 99;
-}
-
 .badge {
   display: inline-block;
   position: relative;
@@ -193,7 +189,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
 .embed {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
-	padding-top: 25px;
+	margin-bottom: 25px;
 	height: 0;
   iframe {
   	position: absolute;
@@ -206,4 +202,32 @@ $element-sprite: sprite-map("elements-1x/*.png");
 
 .gpx-file.selected {
   background: $white;
+}
+
+.weathered {
+  ul {
+    margin: 0;
+  }
+  li {
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    font-family: $narrow-sans-serif-font;
+    color: $grey;
+    font-size: 0.8rem;
+    margin: 0 0 1rem;
+    div {
+      position: relative;
+      overflow: hidden;
+    }
+  }
+  canvas {
+    margin-right: 0.8rem;
+    background: $greydark;
+    padding: 0.4rem;
+    @include border-radius(0.3rem);
+  }
+  h6 {
+    margin: 0; 
+  }
 }

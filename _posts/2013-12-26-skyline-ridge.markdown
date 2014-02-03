@@ -23,8 +23,11 @@ distance: 1.2 - 2.4 miles
 highest-elevation: 2400 feet
 starting-elevation: 1300 feet
 elevation-gain: 1300 feet
-directions: Drive to Stevens Pass
+directions: Take US 2 to Stevens Pass Resort. Park in the lot on the north side of the road.
 reports:
+  - name: February 2, 2014, Skyline Ridge
+    url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=30616.0
+    date: 2014-02-02 17:51:14 -0800
   - name: Jan, 4th 2014 Skyline Ridge
     url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=30238.0
     date: 2014-01-04 15:20:45 -0800

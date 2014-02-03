@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<a href="/" class="home">Powderlin.es</a>
+<a href="/" class="logo-small">Powderlin.es</a>
 <div class="tour-header" style="background-image:url(/assets/img/{{page.image}});">
   <div class="row">
     <div class="small-12 columns">
@@ -24,20 +24,16 @@ layout: default
 </div>
   
 <div class="row">
-  <div class="small-12 medium-8 columns">
+  <div class="small-12 medium-7 columns">
     <div class="post">
     {{ content }}
     <h3>Directions</h3>
     {{ page.directions }}
     </div>
   </div>
-  <div class="small-12 medium-4 columns">
-    
+  <div class="small-12 medium-5 columns">
+    <div class="weathered" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
   </div>
-</div>
-
-<div class="row section-small">
-  <div class="weathered small-12 columns" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
 </div>
 
 {% include ad.html %}
@@ -86,10 +82,14 @@ layout: default
       <h2>Gear</h2>
     </div>
     <div class="small-12 medium-6 columns">
-      gear
+      <a href="http://www.amazon.com/gp/product/B001OFEA8S/ref=as_li_ss_il?ie=UTF8&camp=1789&creative=390957&creativeASIN=B001OFEA8S&linkCode=as2&tag=wefouadv-20">
+        <img src="http://ecx.images-amazon.com/images/I/61I4qCovhOL.jpg"/>
+      </a>
     </div>
     <div class="small-12 medium-6 columns">
-      gear
+      <a href="http://www.amazon.com/gp/product/1594856567/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1594856567&linkCode=as2&tag=wefouadv-20">
+        <img src="http://ecx.images-amazon.com/images/I/516v4AUtPVL.jpg"/>
+      </a>
     </div>
   </div>
 </div>

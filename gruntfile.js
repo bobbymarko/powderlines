@@ -32,7 +32,7 @@ grunt.initConfig({
   uglify: {
     app: {
       files: {
-        'assets/js/main.js': ['components/jquery/jquery.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js']
+        'assets/js/main.js': ['components/jquery/jquery.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js', 'assets/scripts/scroller.js']
       }
     }
   },
@@ -72,20 +72,44 @@ grunt.initConfig({
       }
     }
   },
+  aws: grunt.file.readJSON('grunt-aws.json'),
+  aws_s3: {
+    options: {
+      accessKeyId: '<%= aws.key %>',
+      secretAccessKey: '<%= aws.secret %>',
+      bucket: '<%= aws.bucket %>',
+      access: 'public-read',
+      region: 'us-east-1',
+      differential: true,
+      headers: {
+        // Two Year cache policy (1000 * 60 * 60 * 24 * 730)
+        "Cache-Control": "max-age=630720000, public",
+        "Expires": new Date(Date.now() + 63072000000).toUTCString()
+      }
+    },
+    dev: {
+      // These options override the defaults
+      options: {
+        encodePaths: true,
+        uploadConcurrency: 20
+      },
+      files: [
+        {expand: true, cwd: '_site', src: ['**'], dest: ''}
+      ]
+    }
+  },
   exec: {
     build: {
       cmd: 'jekyll build'
     },
     serve: {
       cmd: 'jekyll serve'
-    },
-    deploy: {
-      cmd: 'rsync --progress -a --delete -e "ssh -q" _site/ myuser@host:mydir/'
     }
   }
 });
 
 grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-aws-s3');
 grunt.loadNpmTasks('grunt-contrib-compass');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-copy');
@@ -93,7 +117,7 @@ grunt.loadNpmTasks('grunt-contrib-connect');
 grunt.loadNpmTasks('grunt-exec');
 
 grunt.registerTask('default', [ 'uglify', 'copy', 'exec:build', 'watch' ]);
-grunt.registerTask('deploy', [ 'default', 'exec:deploy' ]);
 grunt.registerTask('serve', [ 'connect:server', 'default' ]);
+grunt.registerTask('deploy', [ 'uglify', 'copy', 'exec:build', 'aws_s3' ]);
 
 };
