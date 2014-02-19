@@ -68,7 +68,7 @@ $(function(){
         output += '<ul>';
         $.each(weatherText, function(i) {
           var truncatedIcon = weatherIcon[i].replace(/.*?\//g, '').replace(/[0-9]/g,'').replace(/.png/,'')
-          output += '<li><canvas class="skycon left" data-icon="' + icons[truncatedIcon] + '" id="icon-' + i + '" width="40px" height="40px"></canvas><div><h6><strong>' + time[i] + '</strong>: ' + weather[i] + '</h6>' + this + '</div></li>';
+          output += '<li><div class="icon"><canvas class="skycon" data-icon="' + icons[truncatedIcon] + '" id="icon-' + i + '" width="40px" height="40px"></canvas><div>' + weatherTemp[i] + '&deg;</div></div><div><h6><strong>' + time[i] + '</strong>: ' + weather[i] + '</h6>' + this + '</div></li>';
         });
         output += '</ul>';
         

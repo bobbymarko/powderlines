@@ -26,6 +26,19 @@ $element-sprite: sprite-map("elements-1x/*.png");
   opacity: 0.2; 
 }*/
 
+.nostyle {
+  margin: 0;
+  list-style: none;
+  li {
+    margin-bottom: .4rem;  
+    small {
+      display: block;
+      color: $greydark;
+      line-height: 1;
+    }
+  }
+}
+
 .section {
   padding: 10rem 0;
   position: relative;
@@ -33,6 +46,10 @@ $element-sprite: sprite-map("elements-1x/*.png");
 
 .section-small {
   padding: 4rem 0;
+}
+
+.spacing-small {
+  margin-bottom: 1rem !important;
 }
 
 .offset-background {
@@ -181,15 +198,44 @@ $element-sprite: sprite-map("elements-1x/*.png");
   margin: 0 0 2rem;
 }
 
+.map-wrapper {
+  position: relative;
+  min-height: 30rem;
+  .columns {
+    background: rgba(255,255,255,0.6);
+    @include box-shadow(0 0 30px rgba(0,0,0,0.15));
+  }
+  ul li {
+    margin-bottom: 0;
+  }
+  .gpx-file {
+    padding: 0.3rem 1rem 0.8rem;
+    margin: 0 -0.83333rem;
+    cursor: pointer;
+    @include transition(background 600ms ease-in);
+    &.hover {
+      background: rgba(255,255,255, 0.6);
+      @include transition(background 100ms ease-out);
+    }
+    &.select {
+      background: $white;
+      @include transition(background 100ms ease-out);
+    }
+  }
+}
+
 .mapped {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 40rem;
+  height: 100%;
 }
 
 .embed {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
-	margin-bottom: 25px;
+	margin-bottom: .4rem;
 	height: 0;
   iframe {
   	position: absolute;
@@ -198,10 +244,6 @@ $element-sprite: sprite-map("elements-1x/*.png");
   	width: 100% !important;
   	height: 100% !important;
   }
-}
-
-.gpx-file.selected {
-  background: $white;
 }
 
 .weathered {
@@ -221,13 +263,89 @@ $element-sprite: sprite-map("elements-1x/*.png");
       overflow: hidden;
     }
   }
-  canvas {
+  .icon {
     margin-right: 0.8rem;
     background: $greydark;
     padding: 0.4rem;
-    @include border-radius(0.3rem);
+    float: left;
+    text-align: center;
+    font-family: $sans-serif-font;
+    line-height: 1;
+    color: $greylighter;
+    div {
+      margin-top: 0.2rem;
+    }
+    canvas {
+      display: block;
+    }
   }
   h6 {
     margin: 0; 
+  }
+}
+
+.footer small {
+  color: $greylight;
+}
+
+.product {
+  display: block;
+  position: relative;
+  text-align: center;
+  padding: 1rem;
+  .product-title-wrapper {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    padding: 1rem;
+    @include transition(background 200ms ease-in);
+  }
+  .product-title {
+    margin-top: 50%;
+    padding: .4rem;
+    opacity: 0;
+    display: inline-block;
+    border: 3px solid $white;
+    font-family: $narrow-sans-serif-font;
+    color: $white;
+    @include transform(translateY(-50%));
+    @include transition(opacity 100ms ease-in);
+  }
+  &:hover {
+    .product-title-wrapper {
+      background: rgba(0,0,0,0.3);
+    }
+    .product-title {
+      opacity: 1;
+      @include transition(opacity 400ms ease-in);
+    }
+  }
+}
+
+.trip-report {
+  background-position: center center;
+  background-size: cover;
+  @include text-shadow(0 .2rem .8rem rgba(0,0,0,0.5));
+  p {
+    margin: 0;
+  }
+  a {
+    display: block;
+    overflow: hidden;
+    div {
+      color: $white;
+      padding: 1rem;
+      @include background-image(linear-gradient(left, rgba(0,0,0,0.3), rgba(0,0,0,0)));
+      @include transition(opacity 100ms ease-in);
+    }
+    &:hover div {
+      opacity: .3;
+      @include transition-duration(400ms);
+    }
+    small {
+      color: $white;
+    }
   }
 }

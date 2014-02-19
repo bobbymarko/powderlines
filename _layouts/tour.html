@@ -28,7 +28,8 @@ layout: default
     <div class="post">
     {{ content }}
     <h3>Directions</h3>
-    {{ page.directions }}
+    <p>{{ page.directions }}</p>
+    <a href="http://maps.google.com/?saddr=&daddr={{ page.parking-lat }},{{ page.parking-long }}" target="_blank">Get directions from Google</a>
     </div>
   </div>
   <div class="small-12 medium-5 columns">
@@ -38,32 +39,37 @@ layout: default
 
 {% include ad.html %}
 
-<div class="row section-small">
-  <div class="small-12 columns">
-    <h2>Map &amp; GPX</h2>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <ul>
-    {% for gpx in page.gpx %}
-      <li>
-        <a href="/assets/gpx/{{ gpx.path }}" data-gpx-name="{{ gpx.name}}" data-gpx-index="{{ forloop.index }}" class="gpx-file">{{ gpx.name }} <small>{{ gpx.date| date: "%B %-d, %Y" }}</small></a>
-      </li>
-    {% endfor %}
-    </ul>
-  </div>
-  <div class="small-12 medium-8 columns">
-    <div class="mapped" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
+<div class="map-wrapper">
+  <div class="mapped" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
+  <div class="row section-small">
+    <div class="small-12 medium-4 columns end">
+      <h2>GPX</h2>
+      <ul class="nostyle">
+      {% for gpx in page.gpx %}
+        <li>
+          <div data-gpx="/assets/gpx/{{ gpx.path }}" data-gpx-name="{{ gpx.name}}" data-gpx-index="{{ forloop.index }}" class="gpx-file">
+            {{ gpx.name }}
+            <small>{{ gpx.date| date: "%B %-d, %Y" }} | <a href="/assets/gpx/{{ gpx.path }}">Download gpx</a></small>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
   </div>
 </div>
 
 <div class="row section-small">
   <div class="small-12 medium-6 columns">
     <h2>Trip reports</h2>
-    <ul>
+    <ul class="nostyle">
       {% for report in page.reports %}
-        <li>
-          <a href="{{ report.url }}" target="_blank">{{ report.name }}</a>
-          <small>{{ report.date | date: "%B %-d, %Y" }}</small>
+        <li class="trip-report" style="background-image:url({{ report.thumb }})">
+          <a href="{{ report.url }}" target="_blank">
+            <div>
+              <p>{{ report.name }}</p>
+              <small>{{ report.date | date: "%B %-d, %Y" }} | {{ report.url | remove:'http://' | split:'/' | first }}</small>
+            </div>
+          </a>
         </li>
       {% endfor %}
     </ul>
@@ -71,7 +77,11 @@ layout: default
   <div class="small-12 medium-6 columns">
     <h2>Videos</h2>
       {% for video in page.videos %}
-        {% oembed {{video.url}} %}
+        {% if forloop.index == 1 %}
+          {% oembed {{video.url}} %}
+        {% else %}
+          <a href="{{video.url}}"><img src="{{video.thumb}}"/></a>
+        {% endif %}
       {% endfor %}
   </div>
 </div>
@@ -82,21 +92,66 @@ layout: default
       <h2>Gear</h2>
     </div>
     <div class="small-12 medium-6 columns">
-      <a href="http://www.amazon.com/gp/product/B001OFEA8S/ref=as_li_ss_il?ie=UTF8&camp=1789&creative=390957&creativeASIN=B001OFEA8S&linkCode=as2&tag=wefouadv-20">
-        <img src="http://ecx.images-amazon.com/images/I/61I4qCovhOL.jpg"/>
+      <a class="product" href="http://www.amazon.com/gp/product/B001OFEA8S/ref=as_li_ss_il?ie=UTF8&camp=1789&creative=390957&creativeASIN=B001OFEA8S&linkCode=as2&tag=powderlines-20">
+        <img src="http://ecx.images-amazon.com/images/I/61I4qCovhOL._AC_SS500_.jpg"/>
+        <div class="product-title-wrapper">
+          <span class="product-title">Backcountry Access Tracker2 Avalanche Beacon</span>
+        </div>
       </a>
     </div>
     <div class="small-12 medium-6 columns">
-      <a href="http://www.amazon.com/gp/product/1594856567/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1594856567&linkCode=as2&tag=wefouadv-20">
-        <img src="http://ecx.images-amazon.com/images/I/516v4AUtPVL.jpg"/>
-      </a>
+      <div class="row spacing-small">
+        <div class="small-6 columns">
+          <a class="product" href="http://www.amazon.com/gp/product/1594856567/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1594856567&linkCode=as2&tag=powderlines-20">
+            <img src="http://ecx.images-amazon.com/images/I/516v4AUtPVL._AC_SS250_.jpg"/>
+            <div class="product-title-wrapper">
+              <span class="product-title">Backcountry Ski and Snowboard Routes - Washington by Martin Volken </span>
+            </div>
+          </a>
+        </div>
+        <div class="small-6 columns">
+          <a class="product" href="http://www.amazon.com/gp/product/B000V05XME/ref=as_li_ss_il?ie=UTF8&camp=1789&creative=390957&creativeASIN=B000V05XME&linkCode=as2&tag=powderlines-20">
+            <img src="http://ecx.images-amazon.com/images/I/61mdPMpfjRL._AC_SS250_.jpg"/>
+            <div class="product-title-wrapper">
+              <span class="product-title">Black Diamond QuikDraw Super Tour Probe 265</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-6 columns">
+          <a class="product" href="http://www.amazon.com/gp/product/B005I408IW/ref=as_li_ss_il?ie=UTF8&camp=1789&creative=390957&creativeASIN=B005I408IW&linkCode=as2&tag=powderlines-20">
+            <img src="http://ecx.images-amazon.com/images/I/31PN4tNraNL._AC_SS250_.jpg"/>
+            <div class="product-title-wrapper">
+              <span class="product-title">Backcountry Access B1 Extendable Shovel</span>
+            </div>
+          </a>
+        </div>
+        <div class="small-6 columns">
+          <a class="product" href="http://www.amazon.com/gp/product/B002B3XOFC/ref=as_li_ss_il?ie=UTF8&camp=1789&creative=390957&creativeASIN=B002B3XOFC&linkCode=as2&tag=powderlines-20">
+            <img src="http://ecx.images-amazon.com/images/I/81gGBBz2obL._AC_SS250_.jpg"/>
+            <div class="product-title-wrapper">
+              <span class="product-title">Osprey Kode 38 Pack</span>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row section-small">
   <div class="small-12 columns">
-    <script src="http://assets-polarb-com.a.ssl.fastly.net/assets/polar-embedded-ed38f2a7466dbdc3695c3e0327c281e7.js" async="true" data-publisher="bobbymarko" data-poll-set="868"></script>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'makepowderlines';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
 </div>
 

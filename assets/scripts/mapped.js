@@ -12,7 +12,8 @@ $(function() {
     var maxZoom = 18;
     var map = L.map($this[0], {
         center: [lat, lon],
-        zoom: 13
+        zoom: 13,
+        scrollWheelZoom: false
     });
     
     //https://github.com/leaflet-extras/leaflet-providers
@@ -21,27 +22,62 @@ $(function() {
         maxZoom: maxZoom
     }).addTo(map);
     
+    function select($el) {
+      classIt($el, 'select');
+    }
+    
+    function hover($el) {
+      classIt($el, 'hover');
+    }
+    
+    function classIt($el, cssClass) {
+      $el.addClass(cssClass).closest('li').siblings().find('.' + cssClass).removeClass(cssClass);
+    }
+    
+    function highlightPath(gpx) {
+      console.log(gpx);
+      $.each(gpx._layers, function() {
+        this.setStyle({
+            color: '#fff',
+            opacity: 1
+        }).bringToFront();
+      });
+    }
+    
     //https://github.com/mpetazzoni/leaflet-gpx
     $.getScript('/assets/scripts/gpx.js', function() {
       $gpx.each(function() {
         var $this = $(this);
-        var path = new L.GPX($this.attr('href'), {
+        var path = new L.GPX($this.attr('data-gpx'), {
           async: true,
           polyline_options: {
             color: colors[Math.floor(Math.random() * colors.length)]
           },
           marker_options: {
-            startIconUrl: '/assets/img/pin-icon-start.png',
-            endIconUrl: '/assets/img/pin-icon-end.png',
-            shadowUrl: '/assets/img/pin-shadow.png'
+            startIconUrl: null, //'/assets/img/pin-icon-start.png',
+            endIconUrl: null, //'/assets/img/pin-icon-end.png',
+            shadowUrl: null //'/assets/img/pin-shadow.png'
           }
         }).on('loaded', function(e) {
           map.fitBounds(e.target.getBounds());
-        }).on('mouseover click', function(e) {
-          $this.addClass('selected').siblings().removeClass('selected');
+        // interact with a line on the map
+        }).on('click', function(e) {
+          select($this);
+          highlightPath(e.target);
+        }).on('mouseover', function(e) {
+          hover($this);
         }).on('mouseout', function(e) {
-          $this.removeClass('selected');
+        
         }).addTo(map);
+        
+        //clicking one of the boxes in the sidebar
+        $this.on('click', function() {
+          console.log(path);
+          select($this);
+          highlightPath(path);
+        }).on('mouseover', function(e) {
+          hover($this);
+        });
       });
     });
   });
