@@ -25,16 +25,16 @@ distance: 3+ miles
 highest-elevation: 5,400 feet
 starting-elevation: 4,060 feet
 elevation-gain: 1,340 feet
-directions: From Seattle &mdash; take the 405 north to 522 (exit 32). Take 522 to Highway 2 near Monroe. Follow 2 through a series of small towns &mdash; don't miss the Sultan Bakery for breakfast &mdash; eventually reaching Stevens Pass Ski Resort at mile post 65. Park in the lot on the north side of the highway. No passes are required for parking here but this lot fills up quick from resort guests so arrive early. The skin track starts behind the utility shed on the northeast corner of the lot &mdash; just follow the hordes of snowshoers.
+directions: From Seattle &mdash; take the 405 north to 522 (exit 32). Take 522 to Highway 2 near Monroe. Follow 2 through a series of small towns &mdash; don't miss the Sultan Bakery for breakfast &mdash; eventually reaching Stevens Pass Ski Resort at mile post 65. Park in the lot on the north side of the highway. No passes are required for parking here but this lot fills up quick from resort guests so arrive early on the weekend. The skin track starts behind the electrical substation on the northeast corner of the lot &mdash; just follow the hordes of snowshoers.
 reports:
   - name: February 2, 2014, Skyline Ridge
     url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=30616.0
     date: 2014-02-02 17:51:14 -0800
-    thumb: /assets/img/trip-reports/skyline-ridge-1.jpg
+    thumb: /assets/img/trip-reports/skyline-ridge-2.jpg
   - name: Jan, 4th 2014 Skyline Ridge
     url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=30238.0
     date: 2014-01-04 15:20:45 -0800
-    thumb: /assets/img/trip-reports/skyline-ridge-2.jpg
+    thumb: /assets/img/trip-reports/skyline-ridge-1.jpg
 videos:
   - name: Skyline Ridge + Pillows
     url: http://vimeo.com/57217068
@@ -50,4 +50,8 @@ videos:
     thumb: http://img.youtube.com/vi/3p2w6ftnEk4/2.jpg
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+Skyline Ridge is a great beginner tour with lots of different options and variations on all aspects of the mountain.
+
+Starting from the the Stevens Pass North Lot across Highway 2 from the resort, skin up a snow covered maintence road north through the woods. As you steadily gain vertical you'll switchback up the south face through open forest eventually passing a cell tower &mdash; by the way you should have excellent cell service for most of this tour. A little ways past the tower the skin track usually diverts to the left from the road up to Skyline lake. Alternatively, you can stay on the road to a second cell tower and utility building and follow tracks to the left towards the lake.
+
+For a short day you can turn around at the lake and ski down the face you skinned up. Or you can press on skirting the north side of the lake and follow Skyline Ridge. Several options for skiing down the northern slopes exist as well.

@@ -4,20 +4,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="google-site-verification" content="se9haMbYGgxaSzOOTz-nHwZ3Bw53_-DyhwGwfrfe2AM" />
-    <title>{{ page.title }}</title>
     <meta name="viewport" content="width=device-width">
+    <meta property="fb:app_id" content="589771691115053" /> 
+    <meta property="fb:admins" content="13933170" />
+    <meta property="og:site_name" content="Powderlines" />  
+    <meta property="og:url" content="{{ site.baseurl }}{{ page.url }}"/>  
+    <meta property="og:title" content="{{ page.title }}" />  
+    <meta property="og:description" content="{{ content | strip_html | truncatewords: 200 | strip_newlines | escape_once }}" />  
+    <meta property="og:type" content="article" />
+    {% if page.image %}
+      <meta property="og:image" content="{{ site.baseurl }}/assets/img/{{ page.image }}" />  
+    {% endif %}
+    {% if page.date %}
+      <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+    {% endif %}
+    <meta property="article:author" content="https://www.facebook.com/makepowderlines" />
+    
+    <title>{{ page.title }}</title>
+    
     <link rel="stylesheet" href="/assets/css/application.css">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
   </head>
   <body>
     {{ content }}
-    <div class="offset-background section text-center footer">
+    <div class="section footer">
       <div class="row">
-        <p>Hand-crafted in the Pacific Northwest by <a href="http://bobbyandmaura.com">Bobby &amp; Maura</a></p>
-      </div>
-      <div class="row">
-        <div class="medium-6 medium-push-3 columns">
-          <small>Backcountry travel is inherently dangerous. This site makes no suggestions or promises in terms of the safety of the tours listed. Remember to always travel with the 10 essentials, including avalanche gear &mdash; beacons, shovels and probes. Ski and ride safe!</small>
+        <div class="medium-8 medium-push-2 columns">
+          <p>Crafted in the Pacific Northwest by <a href="http://bobbyandmaura.com">Bobby &amp; Maura</a></p>
+          <small>Backcountry travel is inherently dangerous. This site makes no suggestions or promises in terms of the safety of the tours listed. Remember to always travel with the 10 essentials, including avalanche gear &mdash; beacon, shovel and probe and good partners. Ski and ride safe!</small>
         </div>
       </div>
     </div>

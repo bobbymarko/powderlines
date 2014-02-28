@@ -16,9 +16,6 @@ layout: default
           <li>Highest elevation: {{ page.highest-elevation }}</li>
           <li>Starting elevation: {{ page.starting-elevation }}</li>
         </ul>
-                  
-          
-          
     </div>
   </div>
 </div>
@@ -57,7 +54,14 @@ layout: default
     </div>
   </div>
 </div>
-
+<div class="jelly-belly">
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>Have a trip report or GPX track you&rsquo;d like to contribute? <a href="mailto:bobby@powderlin.es">Submit&nbsp;your&nbsp;trip &rarr;</a></h3>
+      <p>For tracking your tours we recommend <a href="http://www.gaiagps.com/">GaiaGPS</a> for iPhone or Android.</p>
+    </div>
+  </div>
+</div>
 <div class="row section-small">
   <div class="small-12 medium-6 columns">
     <h2>Trip reports</h2>
@@ -76,13 +80,18 @@ layout: default
   </div>
   <div class="small-12 medium-6 columns">
     <h2>Videos</h2>
-      {% for video in page.videos %}
-        {% if forloop.index == 1 %}
-          {% oembed {{video.url}} %}
-        {% else %}
-          <a href="{{video.url}}"><img src="{{video.thumb}}"/></a>
-        {% endif %}
-      {% endfor %}
+      <div class="video-gallery">
+        <div class="video-player">
+          {% oembed {{page.videos.first.url}} %}
+        </div>
+        <ul class="small-block-grid-4">
+          {% for video in page.videos %}
+            <li class="{% if forloop.first %}active{% endif %}">
+              <a class="video-thumb" href="{{ video.url }}" style="background-image:url({{ video.thumb }});">{{ video.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
   </div>
 </div>
 

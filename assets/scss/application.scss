@@ -41,6 +41,9 @@ $element-sprite: sprite-map("elements-1x/*.png");
 
 .section {
   padding: 10rem 0;
+  @media #{$small-only} {
+    padding: 4rem 0;
+  }
   position: relative;
 }
 
@@ -87,6 +90,11 @@ $element-sprite: sprite-map("elements-1x/*.png");
 .logo {
   @include sprite-replace-text-with-dimensions($element-sprite, 'logo');
   margin: 0 auto 2rem;
+  @media #{$small-only} {
+    background-size: 111px auto;
+    height: 124px;
+    width: 111px;
+  }
 }
 
 .logo-small {
@@ -95,9 +103,9 @@ $element-sprite: sprite-map("elements-1x/*.png");
   top: 1rem;
   left: 1rem;
   z-index: 99;
-  background-size: 115px 190px;
-  width: 115px;
-  height: 128px;
+  background-size: 111px auto;
+  height: 124px;
+  width: 111px;
 }
 
 .scroll-arrow {
@@ -179,6 +187,11 @@ $element-sprite: sprite-map("elements-1x/*.png");
     width: 32rem;
     height: 32rem;
     font-size: 4rem;
+    @media #{$small-only} {
+      font-size: 2rem;
+      width: 15rem;
+      height: 15rem;
+    }
     background-color: fade-out($white, .15);
     @include transition(all 300ms ease-out);
     display: table-cell;
@@ -188,7 +201,19 @@ $element-sprite: sprite-map("elements-1x/*.png");
       background-color: fade-out($white, .4);
       color: $white;
     }
+    small {
+      display: block;
+      font-family: $narrow-sans-serif-font;
+      text-transform: uppercase;
+      font-size: 1rem;
+      line-height: 2;
+      opacity: 0.5;
+    }
   }
+}
+
+.post {
+  margin-bottom: 1rem;
 }
 
 .tour-header {
@@ -232,20 +257,6 @@ $element-sprite: sprite-map("elements-1x/*.png");
   height: 100%;
 }
 
-.embed {
-	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	margin-bottom: .4rem;
-	height: 0;
-  iframe {
-  	position: absolute;
-  	top: 0;
-  	left: 0;
-  	width: 100% !important;
-  	height: 100% !important;
-  }
-}
-
 .weathered {
   ul {
     margin: 0;
@@ -274,6 +285,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
     color: $greylighter;
     div {
       margin-top: 0.2rem;
+      text-indent: 0.25rem; /* offset the degrees symbol */
     }
     canvas {
       display: block;
@@ -284,8 +296,17 @@ $element-sprite: sprite-map("elements-1x/*.png");
   }
 }
 
-.footer small {
-  color: $greylight;
+.footer {
+  background: #fff url(/assets/img/footer-bg.jpg) bottom center no-repeat;
+  background-size: contain;
+  text-align: center;
+  @media #{$small-only} {
+    text-align: left;
+  }
+  small {
+    color: $grey;
+    font-size: 0.8rem;
+  }
 }
 
 .product {
@@ -313,7 +334,14 @@ $element-sprite: sprite-map("elements-1x/*.png");
     @include transform(translateY(-50%));
     @include transition(opacity 100ms ease-in);
   }
+  img {
+    @include transition(all 100ms ease-in);
+  }
   &:hover {
+    img {
+      @include filter(blur(20px));
+      @include transition(all 300ms ease-in);
+    }
     .product-title-wrapper {
       background: rgba(0,0,0,0.3);
     }
@@ -348,4 +376,62 @@ $element-sprite: sprite-map("elements-1x/*.png");
       color: $white;
     }
   }
+}
+
+.video-player {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	margin-bottom: .4rem;
+	height: 0;
+  iframe {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100% !important;
+  	height: 100% !important;
+  }
+}
+
+.video-thumb {
+  height: 3rem;
+  text-indent: -9999px;
+  background-size: cover;
+  display: block;
+  position: relative;
+  @include transition(all 200ms ease-in);
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent transparent transparent #fff;
+    border-width: 10px 15px;
+    margin: -8px 0 0 -6px;
+    opacity: 0.6;
+    @include transition(all 200ms ease-in);
+  }
+  .active & {
+    border: 3px solid $primary-color;
+    &:after {
+      opacity: 0;
+    }
+  }
+  &:hover {
+    border: 3px solid #fff;
+  }
+}
+
+.jelly-belly {
+  border-style: solid;
+  border-color: $greylight;
+  border-width: 0.4rem 0;
+  background: #fff;
+  text-align: center;
+  @media #{$small-only} {
+    text-align: left;
+  }
+  padding: 3.2rem 0 2.8rem;
 }

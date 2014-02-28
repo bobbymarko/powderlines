@@ -80,7 +80,7 @@ $(function(){
           skycons.add($this[0], Skycons[icon]);
         });
         
-        skycons.play();
+        //skycons.play();
       },
       error: function(error) {
         //console.log(error);
