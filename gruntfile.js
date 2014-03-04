@@ -5,6 +5,10 @@ grunt.initConfig({
     options: {
       livereload: true
     },
+    markdown: {
+      files: ['**/*.markdown', '!_site/*'],
+      tasks: ['exec:build']
+    },
     html: {
       files: ['**/*.html', '!_site/*'],
       tasks: ['exec:build']

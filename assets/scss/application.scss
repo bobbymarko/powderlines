@@ -221,6 +221,12 @@ $element-sprite: sprite-map("elements-1x/*.png");
   background-size: cover;
   background-position: bottom center;
   margin: 0 0 2rem;
+  &.dark-image, &.dark-image h1 {
+    color: $greylighter;
+    small {
+      color: $greylight;  
+    }
+  }
 }
 
 .map-wrapper {
@@ -297,7 +303,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
 }
 
 .footer {
-  background: #fff url(/assets/img/footer-bg.jpg) bottom center no-repeat;
+  background: $white url(/assets/img/footer-bg.jpg) bottom center no-repeat;
   background-size: contain;
   text-align: center;
   @media #{$small-only} {
@@ -398,6 +404,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
   background-size: cover;
   display: block;
   position: relative;
+  border: 0 solid $primary-color;
   @include transition(all 200ms ease-in);
   &:after {
     position: absolute;
@@ -407,20 +414,20 @@ $element-sprite: sprite-map("elements-1x/*.png");
     width: 0;
     height: 0;
     border-style: solid;
-    border-color: transparent transparent transparent #fff;
+    border-color: transparent transparent transparent $white;
     border-width: 10px 15px;
     margin: -8px 0 0 -6px;
     opacity: 0.6;
     @include transition(all 200ms ease-in);
   }
   .active & {
-    border: 3px solid $primary-color;
+    border-width: 3px;
     &:after {
       opacity: 0;
     }
   }
   &:hover {
-    border: 3px solid #fff;
+    border: 3px solid $white;
   }
 }
 
@@ -428,10 +435,10 @@ $element-sprite: sprite-map("elements-1x/*.png");
   border-style: solid;
   border-color: $greylight;
   border-width: 0.4rem 0;
-  background: #fff;
+  background: $white;
   text-align: center;
   @media #{$small-only} {
     text-align: left;
   }
-  padding: 3.2rem 0 2.8rem;
+  padding: 4.2rem 0 3.8rem;
 }

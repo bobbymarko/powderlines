@@ -51,7 +51,8 @@ $(function() {
         var path = new L.GPX($this.attr('data-gpx'), {
           async: true,
           polyline_options: {
-            color: colors[Math.floor(Math.random() * colors.length)]
+            color: colors[Math.floor(Math.random() * colors.length)],
+            weight: 2
           },
           marker_options: {
             startIconUrl: null, //'/assets/img/pin-icon-start.png',
