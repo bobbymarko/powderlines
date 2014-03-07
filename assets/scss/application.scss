@@ -442,3 +442,11 @@ $element-sprite: sprite-map("elements-1x/*.png");
   }
   padding: 4.2rem 0 3.8rem;
 }
+
+.byline {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: $grey;
+  font-family: $narrow-sans-serif-font;
+  margin-bottom: 2rem;
+}

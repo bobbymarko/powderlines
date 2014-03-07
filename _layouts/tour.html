@@ -23,10 +23,11 @@ layout: default
 <div class="row">
   <div class="small-12 medium-7 columns">
     <div class="post">
-    {{ content }}
-    <h3>Directions</h3>
-    <p>{{ page.directions }}</p>
-    <a href="http://maps.google.com/?saddr=&daddr={{ page.parking-lat }},{{ page.parking-long }}" target="_blank">Get directions from Google</a>
+      {{ content }}
+      <p class="byline">By <a href="http://bobbyandmaura.com" rel="author">Bobby Marko</a></p>
+      <h3>Directions</h3>
+      <p>{{ page.directions }}</p>
+      <a href="http://maps.google.com/?saddr=&daddr={{ page.parking-lat }},{{ page.parking-long }}" target="_blank">Get directions from Google</a>
     </div>
   </div>
   <div class="small-12 medium-5 columns">
@@ -58,7 +59,7 @@ layout: default
   <div class="row">
     <div class="small-12 columns">
       <h3>Have a trip report or GPX track you&rsquo;d like to contribute? <a href="mailto:bobby@powderlin.es">Submit&nbsp;your&nbsp;trip &rarr;</a></h3>
-      <p>For tracking your tours we recommend <a href="http://www.gaiagps.com/">GaiaGPS</a> for iPhone or Android.</p>
+      <p>For tracking your tours we recommend <a href="http://www.gaiagps.com/">GaiaGPS</a> for <a href="https://itunes.apple.com/us/app/gaia-gps-topo-maps-trails/id329127297?mt=8&uo=4&at=11lv6L&ct=tripreport" title="Download GaiaGPS for iPhone or iPad from the App Store">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.trailbehind.android.gaiagps.pro" title="Download GaiaGPS for Android from Google Play">Android</a>.</p>
     </div>
   </div>
 </div>
@@ -163,10 +164,3 @@ layout: default
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
 </div>
-
-<!--
-    <a href="http://www.tkqlhce.com/click-7192516-10904340" target="_blank">
-      <img src="http://www.tqlkg.com/image-7192516-10904340" width="160" height="600" alt="Dynamic Banner" border="0"/>
-    </a>
-    
--->
