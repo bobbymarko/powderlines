@@ -171,6 +171,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
   position: relative;
   border-radius: 50%;
   overflow: hidden;
+  @include transform(translate3d(0,0,0));
   .badge-background {
     @include transform(scaleY(-1));
     opacity: .1;

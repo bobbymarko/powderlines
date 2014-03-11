@@ -45,6 +45,10 @@ reports:
     date: 2014-02-23 17:51:14 -0800
     thumb: /assets/img/trip-reports/kendall-3.jpg
 videos:
+  - name: Kendall Couloirs
+    url: http://vimeo.com/38967798
+    date: 2012-03-22 12:41:00 -0800
+    thumb: http://b.vimeocdn.com/ts/268/524/268524795_100.jpg
   - name: Kendall Trees 20140221
     url: https://www.youtube.com/watch?v=ztSnxgOQ-sY
     date: 2014-02-21 10:49:00 -0800
@@ -53,6 +57,10 @@ videos:
     url: https://www.youtube.com/watch?v=vq0y6K3m4fU
     date: 2014-02-01 10:49:00 -0800
     thumb: http://img.youtube.com/vi/vq0y6K3m4fU/3.jpg
+  - name: Kendall Trees Redux 3.29.09
+    url: http://vimeo.com/3935196
+    date: 2009-03-31 13:47:00 -0800
+    thumb: http://b.vimeocdn.com/ts/692/879/6928799_100.jpg
 
 ---
 
