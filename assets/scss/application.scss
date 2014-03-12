@@ -207,7 +207,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
       font-family: $narrow-sans-serif-font;
       text-transform: uppercase;
       font-size: 1rem;
-      line-height: 2;
+      line-height: 3;
       opacity: 0.5;
     }
   }
@@ -382,20 +382,6 @@ $element-sprite: sprite-map("elements-1x/*.png");
     small {
       color: $white;
     }
-  }
-}
-
-.video-player {
-	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	margin-bottom: .4rem;
-	height: 0;
-  iframe {
-  	position: absolute;
-  	top: 0;
-  	left: 0;
-  	width: 100% !important;
-  	height: 100% !important;
   }
 }
 

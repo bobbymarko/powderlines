@@ -34,7 +34,7 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
           <div class="badge">
             <a class="badge-inner" href="{{ post.url }}">
               <div class="badge-background" style="background-image:url(/assets/img/{{post.image}});"></div>
-              {{ post.title }}
+              {{ post.title | replace: 'to', '<span class="fancy">to</span>' }}
               <small>Weather, maps, &amp; info &rarr;</small>
             </a>
           </div>
