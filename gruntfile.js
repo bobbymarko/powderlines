@@ -15,7 +15,7 @@ grunt.initConfig({
     },
     css: {
       files: ['assets/scss/*.scss'],
-      tasks: ['compass', 'copy:css', 'copy:images']
+      tasks: ['compass', 'copy:css'/*, 'copy:images'*/]
     },
     js: {
       files: ['assets/scripts/*.js'],
@@ -61,11 +61,11 @@ grunt.initConfig({
     fonts: {
       src: 'assets/fonts/**',
       dest: '_site/'
-    },
-    images: {
-      src: 'assets/img/**',
-      dest: '_site/'
-    }
+    }//,
+    //images: {
+    //  src: 'assets/img/**',
+    //  dest: '_site/'
+    //}
   },
   imagemin: {
     dynamic: {
@@ -74,7 +74,10 @@ grunt.initConfig({
         cwd: 'assets/img',
         src: ['**/*.{png,jpg,gif}'],
         dest: '_site/assets/img'
-      }]
+      }],
+      options: {
+        cache: false // this slows down the task but fixes a bug that makes the images 0kb
+      }
     }
   },
   connect: {
@@ -124,6 +127,7 @@ grunt.initConfig({
 
 grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-aws-s3');
+grunt.loadNpmTasks('grunt-newer');
 grunt.loadNpmTasks('grunt-contrib-compass');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-copy');
@@ -131,9 +135,9 @@ grunt.loadNpmTasks('grunt-contrib-imagemin');
 grunt.loadNpmTasks('grunt-contrib-connect');
 grunt.loadNpmTasks('grunt-exec');
 
-grunt.registerTask('default', [ 'uglify', 'copy', 'exec:build', 'watch' ]);
+grunt.registerTask('default', [ 'uglify', 'copy', 'optimize', 'exec:build', 'watch' ]);
 grunt.registerTask('serve', [ 'connect:server', 'default' ]);
-grunt.registerTask('deploy', [ 'uglify', 'copy', 'exec:build', 'optimize', 'aws_s3' ]);
+grunt.registerTask('deploy', [ 'uglify', 'copy', 'optimize', 'exec:build', 'aws_s3' ]);
 grunt.registerTask('optimize', ['imagemin']);
 
 };
