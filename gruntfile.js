@@ -67,13 +67,13 @@ grunt.initConfig({
       dest: '_site/'
     }
   },
-  imagemin: {                          // Task
-    dynamic: {                         // Another target
+  imagemin: {
+    dynamic: {
       files: [{
-        expand: true,                  // Enable dynamic expansion
-        cwd: 'assets/img',                   // Src matches are relative to this path
-        src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-        dest: '_site/'                  // Destination path prefix
+        expand: true,
+        cwd: 'assets/img',
+        src: ['**/*.{png,jpg,gif}'],
+        dest: '_site/assets/img'
       }]
     }
   },
@@ -133,7 +133,7 @@ grunt.loadNpmTasks('grunt-exec');
 
 grunt.registerTask('default', [ 'uglify', 'copy', 'exec:build', 'watch' ]);
 grunt.registerTask('serve', [ 'connect:server', 'default' ]);
-grunt.registerTask('deploy', [ 'uglify', 'copy', 'exec:build', 'aws_s3' ]);
+grunt.registerTask('deploy', [ 'uglify', 'copy', 'exec:build', 'optimize', 'aws_s3' ]);
 grunt.registerTask('optimize', ['imagemin']);
 
 };
