@@ -48,7 +48,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
 }
 
 .section-small {
-  padding: 4rem 0;
+  padding: 2rem 0;
 }
 
 .spacing-small {
@@ -221,7 +221,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
   padding: 40% 0 1rem;
   background-size: cover;
   background-position: bottom center;
-  margin: 0 0 2rem;
+  margin: 0;
   &.dark-image, &.dark-image h1 {
     color: $greylighter;
     small {
@@ -233,6 +233,7 @@ $element-sprite: sprite-map("elements-1x/*.png");
 .map-wrapper {
   position: relative;
   min-height: 30rem;
+  margin-bottom: 2rem;
   .columns {
     background: rgba(255,255,255,0.6);
     @include box-shadow(0 0 30px rgba(0,0,0,0.15));

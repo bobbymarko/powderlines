@@ -19,50 +19,7 @@ layout: default
     </div>
   </div>
 </div>
-  
-<div class="row">
-  <div class="small-12 medium-7 columns">
-    <div class="post">
-      {{ content }}
-      <p class="byline">By <a href="http://bobbyandmaura.com" rel="author">Bobby Marko</a></p>
-      <h3>Directions</h3>
-      <p>{{ page.directions }}</p>
-      <a href="http://maps.google.com/?saddr=&daddr={{ page.parking-lat }},{{ page.parking-long }}" target="_blank">Get directions from Google</a>
-    </div>
-  </div>
-  <div class="small-12 medium-5 columns">
-    <div class="weathered" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
-  </div>
-</div>
 
-{% include ad.html %}
-
-<div class="map-wrapper">
-  <div class="mapped" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
-  <div class="row section-small">
-    <div class="small-12 medium-4 columns end">
-      <h2>GPX</h2>
-      <ul class="nostyle">
-      {% for gpx in page.gpx %}
-        <li>
-          <div data-gpx="/assets/gpx/{{ gpx.path }}" data-gpx-name="{{ gpx.name}}" data-gpx-index="{{ forloop.index }}" class="gpx-file">
-            {{ gpx.name }}
-            <small>{{ gpx.date| date: "%B %-d, %Y" }} | <a href="/assets/gpx/{{ gpx.path }}">Download gpx</a> | <a href="{{ gpx.source }}">Source</a></small>
-          </div>
-        </li>
-      {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="jelly-belly">
-  <div class="row">
-    <div class="small-12 columns">
-      <h3>Have a trip report or GPX track you&rsquo;d like to contribute? <a href="mailto:bobby@powderlin.es">Submit&nbsp;your&nbsp;trip &rarr;</a></h3>
-      <p>For tracking your tours we recommend <a href="http://www.gaiagps.com/">GaiaGPS</a> for <a href="https://itunes.apple.com/us/app/gaia-gps-topo-maps-trails/id329127297?mt=8&uo=4&at=11lv6L&ct=tripreport" title="Download GaiaGPS for iPhone or iPad from the App Store">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.trailbehind.android.gaiagps.pro" title="Download GaiaGPS for Android from Google Play">Android</a>.</p>
-    </div>
-  </div>
-</div>
 <div class="row section-small">
   <div class="small-12 medium-6 columns">
     <h2>Trip reports</h2>
@@ -93,6 +50,54 @@ layout: default
           {% endfor %}
         </ul>
       </div>
+  </div>
+</div>
+
+{% include ad.html %}
+
+<div class="map-wrapper">
+  <div class="mapped" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
+  <div class="row section-small">
+    <div class="small-12 medium-4 columns end">
+      <h2>GPX</h2>
+      <ul class="nostyle">
+      {% for gpx in page.gpx %}
+        <li>
+          <div data-gpx="/assets/gpx/{{ gpx.path }}" data-gpx-name="{{ gpx.name}}" data-gpx-index="{{ forloop.index }}" class="gpx-file">
+            {{ gpx.name }}
+            <small>{{ gpx.date| date: "%B %-d, %Y" }} | <a href="/assets/gpx/{{ gpx.path }}">Download gpx</a> | <a href="{{ gpx.source }}">Source</a></small>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+  
+<div class="row">
+  <div class="small-12 medium-7 columns">
+    <div class="post">
+      <h2>Tour description</h2>
+      {{ content }}
+      <p class="byline">By <a href="http://bobbyandmaura.com" rel="author">Bobby Marko</a></p>
+      <h3>Directions</h3>
+      <p>{{ page.directions }}</p>
+      <a href="http://maps.google.com/?saddr=&daddr={{ page.parking-lat }},{{ page.parking-long }}" target="_blank">Get directions from Google</a>
+    </div>
+  </div>
+  <div class="small-12 medium-5 columns">
+    <h2>Weather</h2>
+    <p><a href="http://www.nwac.us/avalanche-forecast/current/{{ page.nwac }}/">Get current avalanche info from NWAC</a></p>
+    <div class="weathered" data-lat="{{page.lat}}" data-long="{{page.long}}"></div>
+  </div>
+</div>
+
+<div class="jelly-belly">
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>Have a trip report or GPX track you&rsquo;d like to contribute? <a href="mailto:bobby@powderlin.es">Submit&nbsp;your&nbsp;trip &rarr;</a></h3>
+      <p>For tracking your tours we recommend <a href="http://www.gaiagps.com/">GaiaGPS</a> for <a href="https://itunes.apple.com/us/app/gaia-gps-topo-maps-trails/id329127297?mt=8&uo=4&at=11lv6L&ct=tripreport" title="Download GaiaGPS for iPhone or iPad from the App Store">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.trailbehind.android.gaiagps.pro" title="Download GaiaGPS for Android from Google Play">Android</a>.</p>
+    </div>
   </div>
 </div>
 

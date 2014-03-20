@@ -4,6 +4,7 @@ title:  "Paradise"
 date:   2014-03-10 15:15:55
 categories: tour
 image: glacier-vista.jpg
+nwac: cascade-west-snoqualmie-to-white-pass
 lat: 46.8354
 long: -121.7323
 parking-lat: 46.7842
@@ -27,6 +28,10 @@ starting-elevation: 5,383 feet
 elevation-gain: 4,600 feet
 directions: From Seattle &mdash; 107 miles and about 2 hours and 22 mins. Take I-5 south to Exit 127 for WA-512 E in Puyallup. Turn left onto WA-512 E and go .7 miles and then take the Steele St Exit. Turn left onto Steele Street. Steele street curves and turns into a few different roads. Just follow it until you get to 7. Take the exit for 7 and head South. 7 will take you to the Paradise entrance of Mount Rainier National Park. The road doesn't open until at least 9am (check their <a title="Mount Rainier National Park on Twitter" href="https://twitter.com/MountRainierNPS">Twitter</a> for road status updates) and a National Park Pass is required (can be bought at the entrance). You'll also need chains in the car even if you have 4wd.
 reports:
+  - name: March 11-12, 2014, Rainier, Muir to Bridge Powder!
+    url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=31147.0
+    date: 2014-03-16 17:12:00 -0800
+    thumb: /assets/img/trip-reports/paradise-1.jpg
   - name: 1-20-14-Muir to Paradise via the Nisqually Chutes
     url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=30446.0
     date: 2014-01-20 17:51:14 -0800
