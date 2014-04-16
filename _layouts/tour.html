@@ -18,6 +18,9 @@ layout: default
         </ul>
     </div>
   </div>
+  {% for credit in page.photo-credit %}
+    <a class="photo-credit" href="{{ credit.source }}" target="_blank">Photo: {{ credit.name }}</a>
+  {% endfor %}
 </div>
 
 <div class="row section-small">
