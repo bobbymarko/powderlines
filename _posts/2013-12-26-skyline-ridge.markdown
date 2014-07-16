@@ -28,6 +28,10 @@ starting-elevation: 4,060 feet
 elevation-gain: 1,340 feet
 directions: From Seattle &mdash; take the 405 north to 522 (exit 32). Take 522 to Highway 2 near Monroe. Follow 2 through a series of small towns &mdash; don't miss the Sultan Bakery for breakfast &mdash; eventually reaching Stevens Pass Ski Resort at mile post 65. Park in the lot on the north side of the highway. No passes are required for parking here but this lot fills up quick from resort guests so arrive early on the weekend. The skin track starts behind the electrical substation on the northeast corner of the lot &mdash; just follow the hordes of snowshoers.
 reports:
+  - name: April 18 Skyline Ridge
+    url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=31489
+    date: 2014-04-18 17:51:14 -0800
+    thumb: /assets/img/trip-reports/no-image.jpg
   - name: February 2, 2014, Skyline Ridge
     url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=30616.0
     date: 2014-02-02 17:51:14 -0800

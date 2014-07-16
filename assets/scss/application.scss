@@ -103,9 +103,9 @@ $element-sprite: sprite-map("elements-1x/*.png");
   top: 1rem;
   left: 1rem;
   z-index: 99;
-  background-size: 111px auto;
-  height: 124px;
-  width: 111px;
+  background-size: 85px auto;
+  height: 95px;
+  width: 85px;
 }
 
 .scroll-arrow {
@@ -223,6 +223,23 @@ $element-sprite: sprite-map("elements-1x/*.png");
   background-position: bottom center;
   margin: 0;
   position: relative;
+  &.dark-image, &.dark-image h1 {
+    color: $greylighter;
+    small {
+      color: $greylight;  
+    }
+  }
+}
+
+.page-header {
+  padding: 20% 0;
+  background-size: cover;
+  background-position: bottom center;
+  position: relative;
+  text-align: center;
+  h1 {
+    font-size: 8rem;
+  }
   &.dark-image, &.dark-image h1 {
     color: $greylighter;
     small {

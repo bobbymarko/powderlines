@@ -29,6 +29,10 @@ starting-elevation: 2,981 feet
 elevation-gain: 1,000 - 3,000 feet
 directions: From Seattle &mdash; Take I-90 to Snoqualmie Pass. There are two options for parking depending on your objective. One option is to park at the Summit West parking lot at Exit 52 and hike under the overpass to access the snow-covered access road for the PCT. The other option is to take Exit 54 and park at the Coal Creek Sno-park (Sno-park pass required). If you don't have a Sno-park pass you can park at the end of the Summit East parking lot and walk under the overpass to the trailhead.
 reports:
+  - name: April 18, 2014, Kendall Knob
+    url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=31487
+    date: 2014-04-18 12:15:32 -0800
+    thumb: /assets/img/trip-reports/no-image.jpg
   - name: March 18- Commonwealth/Kendall Avi Danger
     url: http://www.turns-all-year.com/skiing_snowboarding/trip_reports/index.php?topic=31183.0
     date: 2014-03-19 12:15:32 -0800

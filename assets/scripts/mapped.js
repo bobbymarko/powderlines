@@ -5,7 +5,7 @@ $(function() {
     var lon = $this.attr('data-long');
     var $gpx = $('.gpx-file');
     var colors = ['red','blue','yellow','lime'];
-    var tileServer = 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png';
+    //var tileServer = 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png';
     var tileServer = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
     //var tileServer = 'http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg';
     var tileAttribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>';
@@ -35,7 +35,7 @@ $(function() {
     }
     
     function highlightPath(gpx) {
-      console.log(gpx);
+      //console.log(gpx);
       $.each(gpx._layers, function() {
         this.setStyle({
             color: '#fff',
@@ -73,7 +73,7 @@ $(function() {
         
         //clicking one of the boxes in the sidebar
         $this.on('click', function() {
-          console.log(path);
+          //console.log(path);
           select($this);
           highlightPath(path);
         }).on('mouseover', function(e) {
