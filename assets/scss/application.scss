@@ -26,6 +26,15 @@ $element-sprite: sprite-map("elements-1x/*.png");
   opacity: 0.2; 
 }*/
 
+table {
+  text-align: left;
+  min-width: 100%;
+  @include border-radius(4px);
+  td {
+    vertical-align: top;
+  }
+}
+
 .nostyle {
   margin: 0;
   list-style: none;
@@ -467,4 +476,36 @@ $element-sprite: sprite-map("elements-1x/*.png");
   color: $grey;
   font-family: $narrow-sans-serif-font;
   margin-bottom: 2rem;
+}
+
+#map {
+   width:100%;
+   height:400px;
+   @include border-radius(4px 4px 0 0);
+   background: $white;
+}
+#graph-wrapper {
+  background: #fff;
+  @include border-radius(0 0 4px 4px);
+  @include box-shadow(0 4px 0 fade-out($black, .95));
+  margin-bottom: 2rem;
+  padding: 1rem;
+  #graph {
+    .placeholder-rectangle {
+      color: $greylight;
+      text-align: center;
+      width:100%;
+      line-height: 200px;
+      vertical-align: center;
+    }
+  }
+}
+.simple-promo-banner {
+  background: $greydark;
+  color: $greylighter;
+  padding: .5rem .2rem .4rem;
+  text-align: center;
+  p {
+    margin: 0;
+  }
 }
