@@ -6,9 +6,10 @@ $(function() {
     var $gpx = $('.gpx-file');
     var colors = ['red','blue','yellow','lime'];
     //var tileServer = 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png';
-    var tileServer = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
+    //var tileServer = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
     //var tileServer = 'http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg';
-    var tileAttribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>';
+    var tileServer = 'http://s3-us-west-1.amazonaws.com/ctusfs/fstopo/{z}/{x}/{y}.png';
+    var tileAttribution = '';
     var maxZoom = 18;
     var map = L.map($this[0], {
         center: [lat, lon],
