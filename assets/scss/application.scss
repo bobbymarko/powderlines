@@ -502,10 +502,15 @@ table {
 }
 .simple-promo-banner {
   background: $greydark;
-  color: $greylighter;
-  padding: .5rem .2rem .4rem;
+  color: lighten($greydark, 30%);
+  padding: 1rem .2rem .9rem;
   text-align: center;
   p {
     margin: 0;
+    font-size: .8rem;
+  }
+  a {
+    color: $white;
+    text-decoration: underline;
   }
 }

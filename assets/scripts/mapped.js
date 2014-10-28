@@ -8,8 +8,9 @@ $(function() {
     //var tileServer = 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png';
     //var tileServer = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
     //var tileServer = 'http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg';
-    var tileServer = 'http://s3-us-west-1.amazonaws.com/ctusfs/fstopo/{z}/{x}/{y}.png';
-    var tileAttribution = '';
+    //var tileServer = 'http://s3-us-west-1.amazonaws.com/ctusfs/fstopo/{z}/{x}/{y}.png';
+    var tileServer = 'http://s3-us-west-1.amazonaws.com/caltopo/topo/{z}/{x}/{y}.png';
+    var tileAttribution = '<a href="http://caltopo.com/map.html" target="_blank">Caltopo</a>';
     var maxZoom = 18;
     var map = L.map($this[0], {
         center: [lat, lon],

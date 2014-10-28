@@ -112,7 +112,15 @@ Returns detailed information for the specified SNOTEL station.
   </tr>
   <tr>
     <td>Days (integer)</td>
-    <td>Number of days information to retrieve from today.</td>
+    <td>Number of days information to retrieve from today. (optional)</td>
+  </tr>
+  <tr>
+    <td>Start date (YYYY-MM-DD)</td>
+    <td>Historical date to pull data from. Use in conjunction with end date. (optional)</td>
+  </tr>
+  <tr>
+    <td>End date (YYYY-MM-DD)</td>
+    <td>Historical date to pull data from. Use in conjunction with start date (optional)</td>
   </tr>
 </table>
 
@@ -145,7 +153,9 @@ The response includes basic station information in addition to an array of snow 
   </tr>
 </table>
 
-**Sample call:** <a href="http://api.powderlin.es/station/791:WA:SNTL?days=20">http://api.powderlin.es/station/791:WA:SNTL?days=20</a>
+**Sample calls:**
+<a href="http://api.powderlin.es/station/791:WA:SNTL?days=20">http://api.powderlin.es/station/791:WA:SNTL?days=20</a>
+<a href="http://api.powderlin.es/station/791:WA:SNTL?start_date=2013-01-15&end_date=2013-01-15">http://api.powderlin.es/station/791:WA:SNTL?start_date=2013-01-15&end_date=2013-01-15</a>
 
 **Sample response:**
 <pre>
@@ -208,11 +218,11 @@ Returns detailed information for the closest SNOTEL stations to a geographic poi
   <tr>
   <tr>
     <td>days (integer)</td>
-    <td>Number of days information to retrieve from today.</td>
+    <td>Number of days information to retrieve from today. (optional)</td>
   </tr>
   <tr>
     <td>count (integer)</td>
-    <td>number of station's to return (defaults to 3, maximum of 5)</td>
+    <td>number of station's to return (optional - defaults to 3, maximum of 5)</td>
   </tr>
 </table>
 
