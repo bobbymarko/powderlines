@@ -46,6 +46,10 @@ grunt.initConfig({
         {expand: true, cwd: 'components/bootstrap/img/', src: ['**'], dest: 'assets/img/'}
       ]
     },*/
+    cesium: {
+      src: 'assets/Cesium/**',
+      dest: '_site/'
+    },
     gpx: {
       src: 'assets/gpx/**',
       dest: '_site/'
