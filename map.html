@@ -1,0 +1,57 @@
+---
+layout: default
+title: Powderlines Map - The Pacific Northwest&rsquo;s best backcountry tours for this weekend
+---
+
+<style>
+    #cesiumContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        font-family: sans-serif;
+        position: static;
+        height: 500px;
+    }
+</style>
+  
+<div id="cesiumContainer"></div>
+
+<script src="/assets/Cesium/Cesium.js"></script>
+<script>
+  var viewer = new Cesium.Viewer('cesiumContainer');
+  Cesium.viewerEntityMixin(viewer);
+  viewer.scene.depthTestAgainstTerrain = true; // doesn't appear to do anything
+  
+  // how do i detect clicks on my polylines?
+  
+  /*
+  var layers = viewer.scene.imageryLayers;
+  var blackMarble = layers.addImageryProvider(new Cesium.TileMapServiceImageryProvider({
+      url : '//s3-us-west-1.amazonaws.com/caltopo/topo/',
+      maximumLevel : 8,
+      credit : 'Caltopo'
+  }));
+  */
+  
+
+  var terrainProvider = new Cesium.CesiumTerrainProvider({
+      url : '//cesiumjs.org/tilesets/terrain/smallterrain'
+  });
+  viewer.scene.terrainProvider = terrainProvider;
+
+  var dataSource = new Cesium.GeoJsonDataSource();
+  viewer.dataSources.add(dataSource);
+  dataSource.loadUrl('/assets/gpx/ski-tours-complete.geojson');
+  
+
+  
+  var camera = viewer.scene.camera;
+  camera.lookAt(Cesium.Cartesian3.fromDegrees(-98, 15.0, 5000000),
+  Cesium.Cartesian3.fromDegrees(-98, 40.0, 0), Cesium.Cartesian3.UNIT_Z);
+
+</script>
