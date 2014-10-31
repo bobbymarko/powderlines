@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="google-site-verification" content="se9haMbYGgxaSzOOTz-nHwZ3Bw53_-DyhwGwfrfe2AM" />
+    <meta name="viewport" content="width=device-width">
+    <meta property="fb:app_id" content="589771691115053" /> 
+    <meta property="fb:admins" content="13933170" />
+    <meta property="og:site_name" content="Powderlines" />  
+    <meta property="og:url" content="{{ site.baseurl }}{{ page.url }}"/>  
+    <meta property="og:title" content="{{ page.title }}" />  
+    <meta property="og:description" content="{{ content | strip_html | truncatewords: 200 | strip_newlines | escape_once }}" />  
+    <meta property="og:type" content="article" />
+    {% if page.image %}
+      <meta property="og:image" content="{{ site.baseurl }}/assets/img/{{ page.image }}" />  
+    {% endif %}
+    {% if page.date %}
+      <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+    {% endif %}
+    <meta property="article:author" content="https://www.facebook.com/makepowderlines" />
+    
+    <title>{{ page.title }} :: Powderlines - The best backcountry skiing and snowboarding tours in Washington state.</title>
+    <link rel="stylesheet" href="/assets/css/application.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/apple-touch-icon-152x152.png">

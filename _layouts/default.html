@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="google-site-verification" content="se9haMbYGgxaSzOOTz-nHwZ3Bw53_-DyhwGwfrfe2AM" />
-    <meta name="viewport" content="width=device-width">
-    <meta property="fb:app_id" content="589771691115053" /> 
-    <meta property="fb:admins" content="13933170" />
-    <meta property="og:site_name" content="Powderlines" />  
-    <meta property="og:url" content="{{ site.baseurl }}{{ page.url }}"/>  
-    <meta property="og:title" content="{{ page.title }}" />  
-    <meta property="og:description" content="{{ content | strip_html | truncatewords: 200 | strip_newlines | escape_once }}" />  
-    <meta property="og:type" content="article" />
-    {% if page.image %}
-      <meta property="og:image" content="{{ site.baseurl }}/assets/img/{{ page.image }}" />  
-    {% endif %}
-    {% if page.date %}
-      <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
-    {% endif %}
-    <meta property="article:author" content="https://www.facebook.com/makepowderlines" />
-    
-    <title>{{ page.title }} :: Powderlines - The best backcountry skiing and snowboarding tours in Washington state.</title>
-    
-    <link rel="stylesheet" href="/assets/css/application.css">
+{% include header.html %}
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/apple-touch-icon-152x152.png">
   </head>
   <body>
     {{ content }}
@@ -49,13 +16,4 @@
     </div>
     <script src="/assets/js/main.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-46796971-1', 'powderlin.es');
-      ga('send', 'pageview');
-    </script>
-  </body>
-</html>
+{% include footer.html %}

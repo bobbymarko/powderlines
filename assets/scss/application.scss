@@ -5,6 +5,7 @@ $rhythm-unit: 'rem';
 @import "fonts";
 @import "settings";
 @import "cesium";
+@import "3d-map";
 @import "foundation";
 
 @import "compass/utilities/sprites";
@@ -26,6 +27,10 @@ $element-sprite: sprite-map("elements-1x/*.png");
   bottom: 0;
   opacity: 0.2; 
 }*/
+
+html, body {
+  height: 100%;
+}
 
 table {
   text-align: left;
