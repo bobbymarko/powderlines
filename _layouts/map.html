@@ -10,14 +10,13 @@
   <div id="tour-filter-form" class="left-panel">
     <form>
       <div class="large-12 columns">
-        <input type="search" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
+        <input type="text" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
       </div>
     </form>
     <ul class="large-12 columns" data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
         <li>
-            <h5 data-bind="text: name"></h5>
+            <h5 data-bind="text: name, attr: {id: id }"></h5>
             <p data-bind="text: description"></p>
-            <p data-bind="text: type"></p>
         </li> 
     </ul>
   </div>
@@ -28,7 +27,6 @@
 <script>
   /* Housekeeping */
   var polylineWidth = 2;
-  
   ko = Cesium.knockout;
   
   /* Main Cesium */
@@ -59,96 +57,84 @@
   });
   */
 
-
   var dataSource = new Cesium.GeoJsonDataSource();
   dataSource.loadUrl('/assets/gpx/ski-tours-complete.geojson').then(function() {
     var entities = dataSource.entities.entities;
-    for (var i = 0; i < entities.length; i++) {
-        var entity = entities[i];
-        console.log(entity);
-    }
+    knockItOut(); // we can do the knockout stuff now that the json data has loaded
   }).otherwise(function(error) {
     alert('Tours could not be found. Please reload the page.');
   });
   viewer.dataSources.add(dataSource);
-  
-  console.log(dataSource.entities);
-  console.log(dataSource.entities._entities);
-
-  // dataSource.entities.getById(id)
 
   var camera = viewer.scene.camera;
   camera.lookAt(Cesium.Cartesian3.fromDegrees(-121.81263, 45, 300000),
   Cesium.Cartesian3.fromDegrees(-121.81263, 48.706652, 0), Cesium.Cartesian3.UNIT_Z);
   
   /* Knockout stuff */
+  var knockItOut = function() {
   
-  function Tour(data) {
-    this.name = ko.observable(data.name);
-    this.description = ko.observable(data.description);
-    this.path = ko.observable(data.path);
-    this.type = ko.observable(data.type);
-  }
-  
-  function TourListViewModel() {
-      // Data
-      var self = this;
-      self.tours = ko.observableArray([]);
-      self.query = ko.observable('');
-      self.filteredTours = ko.computed(function () {
-        var query = this.query().toLowerCase();
-        if (!query) {
-          return this.tours();
-        } else {
-          return ko.utils.arrayFilter(this.tours(), function (tour) {
-              return tour.name().toLowerCase().indexOf(query) !== -1;
-          });
-        }
-      }, self);
-  
-      $.getJSON("/assets/gpx/ski-tours-complete.geojson", function(allData) {
-          //console.log(allData);
-          var mappedTours = $.map(allData.features, function(item) {
-
-            return new Tour({
-              name: item.properties.Name,
-              description: item.properties.Description,
-              path: item.geometry.coordinates,
-              type: item.geometry.type
-            })
-          });
-          self.tours(mappedTours);
-      });
-      
-      self.filteredTours.subscribe(function(tours) {
-//        viewer.scene.primitives.removeAll();
-        $.each(tours, function() {
-          var tour = this;
-          //console.log(tour.path()[0]);
-          if (tour.type() == "MultiLineString") {
-            primitives.add(new Cesium.Primitive({
-                geometryInstances : new Cesium.GeometryInstance({
-                    geometry : new Cesium.PolylineGeometry({
-                        positions : Cesium.Cartesian3.fromDegreesArray([
-                            -124.0, 40.0,
-                            -80.0, 40.0
-                        ]),
-                        width : polylineWidth,
-                        vertexFormat : Cesium.PolylineColorAppearance.VERTEX_FORMAT
-                    }),
-                    attributes: {
-                        color: Cesium.ColorGeometryInstanceAttribute.fromColor(new Cesium.Color(1.0, 0.0, 0.0, 0.8))
-                    }
-                }),
-                appearance : new Cesium.PolylineColorAppearance()
-            }));
+    function Tour(data) {
+      this.id = ko.observable(data.id);
+      this.name = ko.observable(data.name);
+      this.description = ko.observable(data.description);
+    }
+    
+    function TourListViewModel() {
+        // Data
+        var self = this;
+        self.tours = ko.observableArray([]);
+        self.query = ko.observable('');
+        self.filteredTours = ko.computed(function () {
+          var query = this.query().toLowerCase();
+          if (!query) {
+            return this.tours();
+          } else {
+            return ko.utils.arrayFilter(this.tours(), function (tour) {
+                return tour.name().toLowerCase().indexOf(query) !== -1;
+            });
           }
+        }, self);
+     
+       var mappedTours = $.map(dataSource.entities.entities, function(entity) {
+          return new Tour({
+            id: entity.id,
+            name: entity.name,
+            description: entity.properties.Description
+          })
         });
+        self.tours(mappedTours);
         
-      });
+        self.filteredTours.subscribe(function(tours) {
+          // hide all tours
+          var entities = dataSource.entities.entities;
+          for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];
+            if (entity.polyline) {
+              entity.polyline.show = new Cesium.ConstantProperty(false);
+            }
+            if (entity.polygon) {
+              entity.polygon.show = new Cesium.ConstantProperty(false);
+            }
+          }
+          
+          
+          $.each(tours, function() {
+            var tour = this;
+            // show the ones that match
+            var tourGeometry = dataSource.entities.getById(tour.id());
+            if (tourGeometry.polyline) {
+              tourGeometry.polyline.show = new Cesium.ConstantProperty(true); 
+            }
+            if (tourGeometry.polygon) {
+              tourGeometry.polygon.show = new Cesium.ConstantProperty(true); 
+            }
+          });
+          
+        });
+    }
+  
+    ko.applyBindings(new TourListViewModel(), document.getElementById('tour-filter-form'));
   }
-
-  ko.applyBindings(new TourListViewModel(), document.getElementById('tour-filter-form'));
 
 </script>
 {% include footer.html %}
