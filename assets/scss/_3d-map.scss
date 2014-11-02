@@ -1,3 +1,28 @@
+.map-view {
+  height: 100%;
+  overflow: hidden;
+}
+
+.left-panel, .right-panel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.left-panel {
+  width: 33.3333%;
+  left: 0;
+  overflow: scroll;
+  background: $white;
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+}
+.right-panel {
+  width: 66.6666%;
+  left: 33.3333%;
+}
+
 #cesiumContainer {
     position: absolute;
     top: 0;
