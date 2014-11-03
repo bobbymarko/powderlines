@@ -8,17 +8,18 @@
     {{ content }}
   </div>
   <div id="tour-filter-form" class="left-panel">
-    <form>
-      <div class="large-12 columns">
-        <input type="text" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
-      </div>
+    <form class="panel">
+      <input type="text" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
+      <input type="text" placeholder="Min distance" data-bind="value: minDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+      <input type="text" placeholder="Max distance" data-bind="value: maxDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
     </form>
-    <ul class="large-12 columns" data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
-        <li>
-            <h5 data-bind="text: name, attr: {id: id }"></h5>
-            <p data-bind="text: description"></p>
-        </li> 
-    </ul>
+    <div class="scroller" >
+      <ul data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
+          <li data-bind="click: $parent.tourClick.bind($data, $index())">
+              <span data-bind="text: name, attr: {id: id }"></span>
+          </li> 
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -27,6 +28,8 @@
 <script>
   /* Housekeeping */
   var polylineWidth = 2;
+  var minDistance = 0;
+  var maxDistance = 9999999;
   ko = Cesium.knockout;
   
   /* Main Cesium */
@@ -42,10 +45,11 @@
     })
   });
   viewer.extend(Cesium.viewerEntityMixin);
-  viewer.scene.globe.depthTestAgainstTerrain = true;
+  //viewer.scene.globe.depthTestAgainstTerrain = true;
   
   // Create a polyline collection with two polylines
   var primitives = viewer.scene.primitives;
+  var camera = viewer.scene.camera;
   
   // how do i detect clicks on my polylines?
   /*
@@ -66,7 +70,6 @@
   });
   viewer.dataSources.add(dataSource);
 
-  var camera = viewer.scene.camera;
   camera.lookAt(Cesium.Cartesian3.fromDegrees(-121.81263, 45, 300000),
   Cesium.Cartesian3.fromDegrees(-121.81263, 48.706652, 0), Cesium.Cartesian3.UNIT_Z);
   
@@ -77,6 +80,7 @@
       this.id = ko.observable(data.id);
       this.name = ko.observable(data.name);
       this.description = ko.observable(data.description);
+      this.distance = ko.observable(data.distance);;
     }
     
     function TourListViewModel() {
@@ -84,22 +88,70 @@
         var self = this;
         self.tours = ko.observableArray([]);
         self.query = ko.observable('');
+        self.minDistanceQuery = ko.observable('');
+        self.maxDistanceQuery = ko.observable('');
         self.filteredTours = ko.computed(function () {
-          var query = this.query().toLowerCase();
-          if (!query) {
+          var query = this.query().toLowerCase(),
+              minDistanceQuery = this.minDistanceQuery() || minDistance,
+              maxDistanceQuery = this.maxDistanceQuery() || maxDistance;
+          if (!query && minDistanceQuery == minDistance && maxDistanceQuery == maxDistance) {
             return this.tours();
           } else {
             return ko.utils.arrayFilter(this.tours(), function (tour) {
-                return tour.name().toLowerCase().indexOf(query) !== -1;
+                console.log(tour.distance(), minDistanceQuery, maxDistanceQuery);
+                if (!query) {
+                  return (tour.distance() > minDistanceQuery) && (tour.distance() < maxDistanceQuery);
+                } else {
+                  return (tour.name().toLowerCase().indexOf(query) !== -1) && (tour.distance() > minDistanceQuery) && (tour.distance() < maxDistanceQuery);
+                }
             });
           }
         }, self);
+        
+        self.tourClick = function(data, tour) {
+          var cesiumTour = dataSource.entities.getById(tour.id());
+          if (cesiumTour.polyline) {
+            var positions = cesiumTour.polyline.positions.getValue(new Cesium.JulianDate.now());
+          } else {
+            var positions = cesiumTour.polygon.positions.getValue(new Cesium.JulianDate.now());
+          }
+          
+          // convert the positions to something we can work with
+          positions = Cesium.Ellipsoid.WGS84.cartesianArrayToCartographicArray(positions);
+          
+          // Create a bounding box for the camera to zoom to
+          var west, south, east, north;
+          for (var i = 0; i < positions.length; i++) {
+            var position = positions[i];
+            if (typeof west === 'undefined' || position.longitude < west) {
+              west = position.longitude
+            }
+            if (typeof south === 'undefined' || position.latitude < south) {
+              south = position.latitude
+            }
+            if (typeof east === 'undefined' || position.longitude > east) {
+              east = position.longitude
+            }
+            if (typeof north === 'undefined' || position.latitude > north) {
+              north = position.latitude
+            } 
+          }
+          
+          camera.flyToRectangle({
+            destination : new Cesium.Rectangle(west, south, east, north),
+            complete : function() {
+              // fine tune view here
+              camera.zoomOut(8000.0);
+            }
+          });
+        }
      
-       var mappedTours = $.map(dataSource.entities.entities, function(entity) {
+        var mappedTours = $.map(dataSource.entities.entities, function(entity) {
           return new Tour({
             id: entity.id,
             name: entity.name,
-            description: entity.properties.Description
+            description: entity.properties.description,
+            distance: entity.properties.distance
           })
         });
         self.tours(mappedTours);
