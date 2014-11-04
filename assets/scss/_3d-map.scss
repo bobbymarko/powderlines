@@ -25,6 +25,15 @@
     &:hover {
       background: $greylighter;
       color: $black;
+      .distance {
+        color: $black;
+      }
+    }
+    .distance {
+      float: right;
+      color: $greylight;
+      font-size: 0.7rem;
+      @include transition(all 400ms ease-in);
     }
   }
   .scroller {
@@ -32,6 +41,12 @@
     margin: -20px 0 -185px; /* adjust height to fit search form TODO: switch to REM */
     height: 100%;
   }
+  .panel {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+  
 }
 .right-panel {
   width: 66.6666%;

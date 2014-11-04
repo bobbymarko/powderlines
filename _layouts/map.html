@@ -9,14 +9,25 @@
   </div>
   <div id="tour-filter-form" class="left-panel">
     <form class="panel">
-      <input type="text" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
-      <input type="text" placeholder="Min distance" data-bind="value: minDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
-      <input type="text" placeholder="Max distance" data-bind="value: maxDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+      <div class="row">
+        <div class="small-12 columns">
+          <input type="text" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-6 columns">
+          <input type="text" placeholder="Min distance" data-bind="value: minDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+        </div>
+        <div class="small-6 columns">
+          <input type="text" placeholder="Max distance" data-bind="value: maxDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+        </div>
+      </div>
     </form>
     <div class="scroller" >
       <ul data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
           <li data-bind="click: $parent.tourClick.bind($data, $index())">
               <span data-bind="text: name, attr: {id: id }"></span>
+              <span class="distance" data-bind="text: formattedDistance"></span>
           </li> 
       </ul>
     </div>
@@ -28,6 +39,8 @@
 <script>
   /* Housekeeping */
   var polylineWidth = 2;
+  var normalColor = Cesium.Color.YELLOW;
+  var highlightColor = new Cesium.Color(1.0, 0.5, 0.0, 1.0);
   var minDistance = 0;
   var maxDistance = 9999999;
   ko = Cesium.knockout;
@@ -40,6 +53,7 @@
     timeline        : false,
     sceneModePicker : false,
     baseLayerPicker : false,
+    infoBox         : false,
     terrainProvider : new Cesium.CesiumTerrainProvider({
         url : '//cesiumjs.org/tilesets/terrain/smallterrain'
     })
@@ -52,14 +66,13 @@
   var camera = viewer.scene.camera;
   
   // how do i detect clicks on my polylines?
-  /*
   Cesium.knockout.getObservable(viewer, 'selectedEntity').subscribe(function(entity) {
       if (entity !== undefined) {
-           console.log(this, entity.id, entity.name, entity.description.getValue());
-           highlightedObject.material.uniforms.color.alpha = 0.75;
+        //todo - add prefix to id
+        $('#' + entity.id).trigger('click');
       }
   });
-  */
+
 
   var dataSource = new Cesium.GeoJsonDataSource();
   dataSource.loadUrl('/assets/gpx/ski-tours-complete.geojson').then(function() {
@@ -80,7 +93,12 @@
       this.id = ko.observable(data.id);
       this.name = ko.observable(data.name);
       this.description = ko.observable(data.description);
-      this.distance = ko.observable(data.distance);;
+      this.distance = ko.observable(data.distance);
+      this.formattedDistance = ko.computed(function() {
+        if (this.distance()) {
+          return this.distance() + 'mi';
+        }
+      }, this);
     }
     
     function TourListViewModel() {
@@ -98,11 +116,10 @@
             return this.tours();
           } else {
             return ko.utils.arrayFilter(this.tours(), function (tour) {
-                console.log(tour.distance(), minDistanceQuery, maxDistanceQuery);
                 if (!query) {
-                  return (tour.distance() > minDistanceQuery) && (tour.distance() < maxDistanceQuery);
+                  return (tour.distance() >= minDistanceQuery) && (tour.distance() <= maxDistanceQuery);
                 } else {
-                  return (tour.name().toLowerCase().indexOf(query) !== -1) && (tour.distance() > minDistanceQuery) && (tour.distance() < maxDistanceQuery);
+                  return (tour.name().toLowerCase().indexOf(query) !== -1) && (tour.distance() >= minDistanceQuery) && (tour.distance() <= maxDistanceQuery);
                 }
             });
           }
@@ -110,10 +127,25 @@
         
         self.tourClick = function(data, tour) {
           var cesiumTour = dataSource.entities.getById(tour.id());
+          
+          // reset colors
+          var entities = dataSource.entities.entities;
+          for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];
+            if (entity.polyline) {
+              entity.polyline.material = Cesium.ColorMaterialProperty.fromColor(normalColor);
+            }
+            if (entity.polygon) {
+              entity.polygon.material = Cesium.ColorMaterialProperty.fromColor(normalColor);
+            }
+          }
+          
           if (cesiumTour.polyline) {
             var positions = cesiumTour.polyline.positions.getValue(new Cesium.JulianDate.now());
+            cesiumTour.polyline.material = Cesium.ColorMaterialProperty.fromColor(highlightColor);
           } else {
             var positions = cesiumTour.polygon.positions.getValue(new Cesium.JulianDate.now());
+            cesiumTour.polygon.material = Cesium.ColorMaterialProperty.fromColor(highlightColor);
           }
           
           // convert the positions to something we can work with
