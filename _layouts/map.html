@@ -16,17 +16,18 @@
       </div>
       <div class="row">
         <div class="small-6 columns">
-          <input type="text" placeholder="Min distance" data-bind="value: minDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+          <input type="text" placeholder="Min distance (miles)" data-bind="value: minDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
         </div>
         <div class="small-6 columns">
-          <input type="text" placeholder="Max distance" data-bind="value: maxDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+          <input type="text" placeholder="Max distance (miles)" data-bind="value: maxDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
         </div>
       </div>
     </form>
-    <div class="scroller" >
+    <div class="scroller">
+      <div class="tour-count">Showing <span data-bind="text: filteredTours().length"></span> tours</div>
       <ul data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
-          <li data-bind="click: $parent.tourClick.bind($data, $index())">
-              <span data-bind="text: name, attr: {id: id }"></span>
+          <li data-bind="attr: {id: id }, event: {click: $parent.tourClick.bind($data, $index()), mouseover: $parent.tourMouseOver.bind($data, $index()), mouseout: $parent.tourMouseOut.bind($data, $index()) }">
+              <span data-bind="text: name"></span>
               <span class="distance" data-bind="text: formattedDistance"></span>
           </li> 
       </ul>
@@ -43,6 +44,7 @@
   var highlightColor = new Cesium.Color(1.0, 0.5, 0.0, 1.0);
   var minDistance = 0;
   var maxDistance = 9999999;
+  var $scroller = $(".left-panel .scroller");
   ko = Cesium.knockout;
   
   /* Main Cesium */
@@ -53,9 +55,13 @@
     timeline        : false,
     sceneModePicker : false,
     baseLayerPicker : false,
+    fullscreenButton: false,
+    navigationHelpButton : false,
+    geocoder        : false,
     //infoBox         : false,
     terrainProvider : new Cesium.CesiumTerrainProvider({
-        url : '//cesiumjs.org/tilesets/terrain/smallterrain'
+        url : '//cesiumjs.org/stk-terrain/tilesets/world/tiles',
+        credit : 'Routes plotted by <a href="http://erikhenne.com">Erik Henne</a>'
     })
   });
   viewer.extend(Cesium.viewerEntityMixin);
@@ -108,7 +114,7 @@
         self.query = ko.observable('');
         self.minDistanceQuery = ko.observable('');
         self.maxDistanceQuery = ko.observable('');
-        self.filteredTours = ko.computed(function () {
+        self.filteredTours = ko.computed(function() {
           var query = this.query().toLowerCase(),
               minDistanceQuery = this.minDistanceQuery() || minDistance,
               maxDistanceQuery = this.maxDistanceQuery() || maxDistance;
@@ -125,8 +131,23 @@
           }
         }, self);
         
+        self.tourMouseOver = function(data, tour) {
+          $('#' + tour.id()).addClass('hover');
+        }
+        
+        self.tourMouseOut = function(data, tour) {
+          $('#' + tour.id()).removeClass('hover');
+        }
+        
         self.tourClick = function(data, tour) {
           var cesiumTour = dataSource.entities.getById(tour.id());
+          
+          //scroll tour into view
+          var scrollTo = $('#' + tour.id()).position().top;
+          // check if item is in view of the scroll pane.
+          if (scrollTo > $scroller.scrollTop() + $scroller.height() || scrollTo < $scroller.scrollTop()) {
+            $scroller.animate({ scrollTop: scrollTo }, 2000);
+          }
           
           // reset colors
           var entities = dataSource.entities.entities;
