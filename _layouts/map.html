@@ -94,7 +94,6 @@
   
   /* Knockout stuff */
   var knockItOut = function() {
-  
     function Tour(data) {
       this.id = ko.observable(data.id);
       this.name = ko.observable(data.name);
@@ -132,22 +131,24 @@
         }, self);
         
         self.tourMouseOver = function(data, tour) {
-          $('#' + tour.id()).addClass('hover');
+          //$('#' + tour.id()).addClass('hover');
         }
         
         self.tourMouseOut = function(data, tour) {
-          $('#' + tour.id()).removeClass('hover');
+          //$('#' + tour.id()).removeClass('hover');
         }
         
         self.tourClick = function(data, tour) {
           var cesiumTour = dataSource.entities.getById(tour.id());
+          var $listTour = $('#' + tour.id());
           
           //scroll tour into view
-          var scrollTo = $('#' + tour.id()).position().top;
+          var scrollTo = $listTour.position().top;
           // check if item is in view of the scroll pane.
           if (scrollTo > $scroller.scrollTop() + $scroller.height() || scrollTo < $scroller.scrollTop()) {
             $scroller.animate({ scrollTop: scrollTo }, 2000);
           }
+          $listTour.addClass('selected').siblings().removeClass('selected');
           
           // reset colors
           var entities = dataSource.entities.entities;
@@ -221,7 +222,6 @@
               entity.polygon.show = new Cesium.ConstantProperty(false);
             }
           }
-          
           
           $.each(tours, function() {
             var tour = this;

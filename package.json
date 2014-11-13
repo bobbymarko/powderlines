@@ -14,7 +14,7 @@
     "grunt-exec": "*",
     "grunt-newer": "*",
     "bower": "*",
-    "grunt-aws-s3": "*"
+    "grunt-aws": "*"
   },
   "engines": {
     "npm": "*"
