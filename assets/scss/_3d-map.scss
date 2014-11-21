@@ -1,23 +1,91 @@
+$box: 4.5rem;
+
+.nav-bar {
+  background: $tertiary;
+  overflow: hidden;
+  position: relative;
+  color: $primary;
+  z-index: 1;
+  .logo-wrapper {
+    width: $box;
+    height: $box;
+    float: left;
+    background: $primary;
+    .logo-small {
+      background-size: 60px auto;
+      height: 66px;
+      width: 60px;
+      top: .4rem;
+      left: .6rem;
+    }
+  }
+  .search-bar {
+    margin-left: $box;
+    background: $secondary;
+  }
+  .filter-text, .filter-text:focus {
+    background: transparent no-repeat url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHdpZHRoPSIxNy4zMyIgaGVpZ2h0PSIxNy45MiIgdmlld0JveD0iMCAwIDE3LjMzIDE3LjkyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxNy4zMzQgMTcuOTE3IiB4bWw6c3BhY2U9InByZXNlcnZlIj48ZyBvcGFjaXR5PSIwLjgiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik03IDEuMTVjMy4yIDAgNS44MSAyLjY3IDUuODEgNS45NSAwIDEuNS0wLjU1IDIuOTMtMS41NSA0LjAzbC0wLjMxIDAuMzUgLTAuMyAwLjI1Yy0xLjA0IDAuODYtMi4zMSAxLjMyLTMuNjUgMS4zMiAtMy4yIDAtNS44MS0yLjY3LTUuODEtNS45NVMzLjggMS4xNSA3IDEuMTVNNyAwLjE1Yy0zLjc2IDAtNi44MSAzLjExLTYuODEgNi45NXMzLjA1IDYuOTUgNi44MSA2Ljk1YzEuNjIgMCAzLjExLTAuNTggNC4yOC0xLjU1bDUuMTkgNS4xOSAwLjcxLTAuNzEgLTUuMTgtNS4xOGMxLjEyLTEuMjQgMS44MS0yLjg5IDEuODEtNC43QzEzLjgxIDMuMjYgMTAuNzcgMC4xNSA3IDAuMTVMNyAwLjE1eiIvPjwvZz48L3N2Zz4");
+    background-position: 1rem .65rem;
+    text-indent: 1.3rem;
+    @include transition(background 400ms ease-in);
+    &:focus {
+      background-color: fade-out($white, 0.9);
+    }
+  }
+  .filter-bar {
+    input[type="text"] {
+      border: none;
+      background: transparent;
+      display: inline-block;
+      width: 3rem;
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+    }    
+  }
+  input[type="text"] {
+    margin: 0;
+    border: none;
+    font-size: 1rem;
+    padding: 1.1rem;
+    color: $white;
+    @include box-shadow(none);
+    &:focus {
+      @include box-shadow(none);
+    }
+  }
+  ::-webkit-input-placeholder {
+     color: fade-out($white,0.8);
+  }
+  :-moz-placeholder { /* Firefox 18- */
+     color: fade-out($white,0.8);
+  }
+  ::-moz-placeholder {  /* Firefox 19+ */
+     color: fade-out($white,0.8);
+  }
+  :-ms-input-placeholder {  
+     color: fade-out($white,0.8);
+  }
+}
+
 .map-view {
   height: 100%;
   overflow: hidden;
+  background: $white;
 }
 
 .left-panel, .right-panel {
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: $box;
 }
 .left-panel {
   width: 33.3333%;
   left: 0;
-  background: $white;
   .tour-count {
     padding: 0.4rem 1.1111rem;
     font-size: .6rem;
-    background: $greydark;
-    color: $greylight;
-    border-bottom: 1px solid $greylight;
+    background: fade-out($secondary, .8);
+    color: $tertiary;
   }
   ul {
     margin: 0;
@@ -27,21 +95,22 @@
   li {
     font-size: 0.8rem;
     padding: 0.6rem 1.1111rem;
-    border-bottom: 1px solid $greylight;
+    border-bottom: 1px solid fade-out($tertiary, .5);
     cursor: pointer;
+    color: $primary;
     @include transition(all 400ms ease-in);
     &:hover {
-      background: $greylighter;
+      background: fade-out($tertiary, .9);
       color: $black;
       .distance {
         color: $black;
       }
     }
     &.selected {
-    background: $greydark;
-    color: $greylight;
+    background: $primary;
+    color: fade-out($tertiary, .1);
       .distance {
-        color: $greylight;
+        color: fade-out($tertiary, .1);
       }
     }
     .distance {
@@ -54,8 +123,6 @@
   .scroller {
     overflow: scroll;
     position: relative;
-    margin: -20px 0 -185px; /* adjust height to fit search form TODO: switch to REM */
-    height: 100%;
   }
   .panel {
     padding-left: 0;
@@ -67,6 +134,7 @@
 .right-panel {
   width: 66.6666%;
   left: 33.3333%;
+  height: 100%;
 }
 
 #cesiumContainer {
@@ -79,4 +147,21 @@
     overflow: hidden;
     padding: 0;
     font-family: sans-serif;
+}
+
+.map-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: $primary;
+  color: fade-out($white, 0.8);
+  padding: 0.4rem 1rem;
+  font-size: 0.7rem;
+  a {
+    color: fade-out($white, 0.4);
+    &:hover {
+      color: $secondary;
+    }
+  }
 }

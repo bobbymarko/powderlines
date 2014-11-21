@@ -1,36 +1,41 @@
 {% include header.html %}
 </head>
-<body>
+<body class="no-scroll">
 
 
 <div class="map-view">
   <div class="right-panel">
     {{ content }}
   </div>
-  <div id="tour-filter-form" class="left-panel">
-    <form class="panel">
-      <div class="row">
-        <div class="small-12 columns">
-          <input type="text" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
-        </div>
+  <div id="tour-filter-form">
+    <form class="nav-bar">
+      <div class="logo-wrapper">
+        <a href="/" class="logo-small">Powderlin.es</a>
       </div>
-      <div class="row">
-        <div class="small-6 columns">
-          <input type="text" placeholder="Min distance (miles)" data-bind="value: minDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
-        </div>
-        <div class="small-6 columns">
-          <input type="text" placeholder="Max distance (miles)" data-bind="value: maxDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
-        </div>
+      <div class="search-bar">
+        <input class="filter-text" type="text" placeholder="Search tours" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
+      </div>
+        
+      <div class="filter-bar">
+        <input type="text" placeholder="0" data-bind="value: minDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+        to
+        <input type="text" placeholder="&#8734;" data-bind="value: maxDistanceQuery, valueUpdate: 'keyup'" autocomplete="off"/>
+        miles
       </div>
     </form>
-    <div class="scroller">
-      <div class="tour-count">Showing <span data-bind="text: filteredTours().length"></span> tours</div>
-      <ul data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
-          <li data-bind="attr: {id: id }, event: {click: $parent.tourClick.bind($data, $index()), mouseover: $parent.tourMouseOver.bind($data, $index()), mouseout: $parent.tourMouseOut.bind($data, $index()) }">
-              <span data-bind="text: name"></span>
-              <span class="distance" data-bind="text: formattedDistance"></span>
-          </li> 
-      </ul>
+    <div class="left-panel">
+      <div class="scroller">
+        <div class="tour-count">Showing <span data-bind="text: filteredTours().length"></span> tours</div>
+        <ul data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
+            <li data-bind="attr: {id: id }, event: {click: $parent.tourClick.bind($data, $index()), mouseover: $parent.tourMouseOver.bind($data, $index()), mouseout: $parent.tourMouseOut.bind($data, $index()) }">
+                <span data-bind="text: name"></span>
+                <span class="distance" data-bind="text: formattedDistance"></span>
+            </li> 
+        </ul>
+      </div>
+    </div>
+    <div class="map-footer">
+      Routes plotted by <a href="http://www.erikhenne.com/" target="_blank">Erik Henne</a>. Rotate using the control key.
     </div>
   </div>
 </div>
@@ -38,6 +43,46 @@
 <script src="/assets/js/main.js"></script>
 <script src="/assets/Cesium/Cesium.js"></script>
 <script>
+  /* update scroller height */
+  (function($,sr){
+    // debouncing function from John Hann
+    // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+    var debounce = function (func, threshold, execAsap) {
+        var timeout;
+        return function debounced () {
+            var obj = this, args = arguments;
+            function delayed () {
+                if (!execAsap)
+                    func.apply(obj, args);
+                timeout = null;
+            };
+            if (timeout)
+                clearTimeout(timeout);
+            else if (execAsap)
+                func.apply(obj, args);
+  
+            timeout = setTimeout(delayed, threshold || 100);
+        };
+    }
+    // smartresize 
+    jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+  })(jQuery,'smartresize');
+
+  $(function() {
+    var $scroller = $('.scroller');
+    var $navBar = $('.nav-bar');
+    var $footer = $('.map-footer');
+    var scrollerAdjust = function() {
+      var height = $(window).height() - $navBar.outerHeight() - $footer.outerHeight();
+      console.log(height);
+      $scroller.css('height', height + 'px');
+    }
+    scrollerAdjust();
+    $(window).smartresize(function() {
+      scrollerAdjust();
+    });
+  });
+
   /* Housekeeping */
   var polylineWidth = 2;
   var normalColor = Cesium.Color.YELLOW;

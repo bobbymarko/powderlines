@@ -32,6 +32,8 @@ html, body {
   height: 100%;
 }
 
+.no-scroll { overflow: hidden; }
+
 table {
   text-align: left;
   min-width: 100%;
@@ -99,6 +101,13 @@ table {
   }
   p {
     color: $greylight;
+  }
+  a {
+    color: $greylight;
+    text-decoration: underline;
+    &:hover {
+      color: $white;
+    }
   }
 }
 
