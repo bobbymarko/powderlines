@@ -47,7 +47,8 @@ $box: 4.5rem;
     margin: 0;
     border: none;
     font-size: 1rem;
-    padding: 1.1rem;
+    padding: .47rem 1.1rem;
+    height: 100%;
     color: $white;
     @include box-shadow(none);
     &:focus {
@@ -98,8 +99,23 @@ $box: 4.5rem;
     border-bottom: 1px solid fade-out($tertiary, .5);
     cursor: pointer;
     color: $primary;
+    position: relative;
     @include transition(all 400ms ease-in);
-    &:hover {
+    .distance {
+      float: right;
+      color: $greylight;
+      font-size: 0.7rem;
+      @include transition(all 400ms ease-in);
+    }
+    .expanded-data {
+      display: none;
+      p {
+        font-size: 0.7rem;
+        margin-bottom: 0;
+        color: $greydark;
+      }
+    }
+    &:hover, &.selected {
       background: fade-out($tertiary, .9);
       color: $black;
       .distance {
@@ -107,17 +123,13 @@ $box: 4.5rem;
       }
     }
     &.selected {
-    background: $primary;
-    color: fade-out($tertiary, .1);
-      .distance {
-        color: fade-out($tertiary, .1);
+      border-top: 1px solid fade-out($tertiary, .2);
+      border-bottom: 1px solid fade-out($tertiary, .2);
+      margin-top: -1px;
+      position: relative;
+      .expanded-data {
+        display: block;
       }
-    }
-    .distance {
-      float: right;
-      color: $greylight;
-      font-size: 0.7rem;
-      @include transition(all 400ms ease-in);
     }
   }
   .scroller {

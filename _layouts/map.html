@@ -28,14 +28,17 @@
         <div class="tour-count">Showing <span data-bind="text: filteredTours().length"></span> tours</div>
         <ul data-bind="foreach: filteredTours, visible: filteredTours().length > 0">
             <li data-bind="attr: {id: id }, event: {click: $parent.tourClick.bind($data, $index()), mouseover: $parent.tourMouseOver.bind($data, $index()), mouseout: $parent.tourMouseOut.bind($data, $index()) }">
-                <span data-bind="text: name"></span>
-                <span class="distance" data-bind="text: formattedDistance"></span>
+              <span data-bind="text: name"></span>
+              <span class="distance" data-bind="text: formattedDistance"></span>
+              <div class="expanded-data">
+                <p>Description: <span data-bind="text: description"></span></p>
+              </div>
             </li> 
         </ul>
       </div>
     </div>
     <div class="map-footer">
-      Routes plotted by <a href="http://www.erikhenne.com/" target="_blank">Erik Henne</a>. Rotate using the control key.
+      Routes plotted by <a href="http://www.erikhenne.com/" target="_blank">Erik Henne</a>. Route paths are rough estimations. Rotate map using the control key.
     </div>
   </div>
 </div>
@@ -74,7 +77,6 @@
     var $footer = $('.map-footer');
     var scrollerAdjust = function() {
       var height = $(window).height() - $navBar.outerHeight() - $footer.outerHeight();
-      console.log(height);
       $scroller.css('height', height + 'px');
     }
     scrollerAdjust();
@@ -103,7 +105,7 @@
     fullscreenButton: false,
     navigationHelpButton : false,
     geocoder        : false,
-    //infoBox         : false,
+    infoBox         : false,
     terrainProvider : new Cesium.CesiumTerrainProvider({
         url : '//cesiumjs.org/stk-terrain/tilesets/world/tiles',
         credit : 'Routes plotted by <a href="http://erikhenne.com">Erik Henne</a>'
@@ -158,6 +160,7 @@
         self.query = ko.observable('');
         self.minDistanceQuery = ko.observable('');
         self.maxDistanceQuery = ko.observable('');
+        
         self.filteredTours = ko.computed(function() {
           var query = this.query().toLowerCase(),
               minDistanceQuery = this.minDistanceQuery() || minDistance,
