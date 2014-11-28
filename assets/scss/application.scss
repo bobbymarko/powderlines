@@ -9,10 +9,7 @@ $rhythm-unit: 'rem';
 @import "foundation";
 
 @import "compass/utilities/sprites";
-$element-sprite: sprite-map("elements-1x/*.png");
-//@import "elements-1x/*.png";
-//@include all-elements-1x-sprites;
-
+$element-sprite: sprite-map("elements-1x/*.png", $spacing: 5px);
 
 //@include establish-baseline;
 
@@ -123,6 +120,7 @@ table {
 
 .logo-small {
   @include sprite-replace-text($element-sprite, 'logo');
+  background-position: 0 -45px;
   position: absolute;
   top: 1rem;
   left: 1rem;

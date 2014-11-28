@@ -36,7 +36,8 @@ grunt.initConfig({
   uglify: {
     app: {
       files: {
-        'assets/js/main.js': ['components/jquery/jquery.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js', 'assets/scripts/jquery.oembed.js', 'assets/scripts/video-player.js', 'assets/scripts/scroller.js', 'assets/scripts/tracking.js']
+        'assets/js/main.js': ['components/jquery/dist/jquery.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js', 'assets/scripts/jquery.oembed.js', 'assets/scripts/video-player.js', 'assets/scripts/scroller.js', 'assets/scripts/tracking.js'],
+        'assets/js/uber-map.js': ['assets/scripts/smart-resize.js','assets/scripts/uber-map.js']
       }
     }
   },
@@ -55,7 +56,7 @@ grunt.initConfig({
       dest: '_site/'
     },
     css: {
-      src: 'assets/css/**',
+      src: 'assets/css/**', /* application.css is only generated when watch is run */
       dest: '_site/'
     },
     js: {

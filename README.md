@@ -26,7 +26,7 @@ for the map
 * Add guidebook info
 * display detail pane on click instead of default display
 * loading state
-* design
+* 2d map
 
 for the site
 * Snow level estimate from api
