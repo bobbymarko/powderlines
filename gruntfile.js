@@ -37,7 +37,8 @@ grunt.initConfig({
     app: {
       files: {
         'assets/js/main.js': ['components/jquery/dist/jquery.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js', 'assets/scripts/jquery.oembed.js', 'assets/scripts/video-player.js', 'assets/scripts/scroller.js', 'assets/scripts/tracking.js'],
-        'assets/js/uber-map.js': ['assets/scripts/smart-resize.js','assets/scripts/uber-map.js']
+        'assets/js/uber-map.js': ['assets/scripts/smart-resize.js','assets/scripts/uber-map.js'],
+        'assets/js/api-docs.js': ['assets/scripts/flotr2.js', 'assets/scripts/api-docs.js']
       }
     }
   },
@@ -128,7 +129,7 @@ grunt.loadNpmTasks('grunt-contrib-imagemin');
 grunt.loadNpmTasks('grunt-contrib-connect');
 grunt.loadNpmTasks('grunt-exec');
 
-grunt.registerTask('default', [ 'uglify', 'copy', 'optimize', 'exec:build', 'watch' ]);
+grunt.registerTask('default', [ 'uglify', 'compass', 'copy', 'optimize', 'exec:build', 'watch' ]);
 grunt.registerTask('serve', [ 'connect:server', 'default' ]);
 grunt.registerTask('deploy', [ 'uglify', 'copy', 'optimize', 'exec:build', 's3' ]);
 grunt.registerTask('optimize', ['imagemin']);

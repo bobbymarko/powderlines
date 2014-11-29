@@ -22,6 +22,8 @@ $(function() {
   var highlightColor = new Cesium.Color(1.0, 0.5, 0.0, 1.0);
   var minDistance = 0;
   var maxDistance = 9999999;
+  var offsetZ = 5000
+  var offsetBack = 18000;
   var $scroller = $(".left-panel .scroller");
   ko = Cesium.knockout;
   
@@ -46,8 +48,16 @@ $(function() {
   //viewer.scene.globe.depthTestAgainstTerrain = true;
   
   // Create a polyline collection with two polylines
-  var primitives = viewer.scene.primitives;
-  var camera = viewer.scene.camera;
+  var scene = viewer.scene;
+  var primitives = scene.primitives;
+  var camera = scene.camera;
+  
+  // Camera debugger
+  /*
+  viewer.clock.onTick.addEventListener(function(clock) {
+      console.log(camera.up, camera.direction);
+  });
+  */
   
   // how do i detect clicks on my polylines?
   Cesium.knockout.getObservable(viewer, 'selectedEntity').subscribe(function(entity) {
@@ -67,7 +77,7 @@ $(function() {
   });
   viewer.dataSources.add(dataSource);
   
-  camera.lookAt(Cesium.Cartesian3.fromDegrees(-121.81263, 45, 300000),
+  camera.lookAt(Cesium.Cartesian3.fromDegrees(-121.81263, 44, 200000),
   Cesium.Cartesian3.fromDegrees(-121.81263, 48.706652, 0), Cesium.Cartesian3.UNIT_Z);
   
   /* Knockout stuff */
@@ -80,6 +90,7 @@ $(function() {
       this.name = ko.observable(data.name);
       this.description = ko.observable(data.description);
       this.distance = ko.observable(data.distance);
+      this.link = ko.observable(data.link);
       this.formattedDistance = ko.computed(function() {
         if (this.distance()) {
           return this.distance() + 'mi';
@@ -155,31 +166,36 @@ $(function() {
           // convert the positions to something we can work with
           positions = Cesium.Ellipsoid.WGS84.cartesianArrayToCartographicArray(positions);
           
-          // Create a bounding box for the camera to zoom to
-          var west, south, east, north;
+          var boundingBox = Cesium.Rectangle.fromCartographicArray(positions),
+              boundingBoxCenter = Cesium.Rectangle.center(boundingBox);
+          
+          // Get tallest point
+          var minHeight, maxHeight;
           for (var i = 0; i < positions.length; i++) {
             var position = positions[i];
-            if (typeof west === 'undefined' || position.longitude < west) {
-              west = position.longitude
+            if (typeof minHeight === 'undefined' || position.height > minHeight) {
+              minHeight = position.height
             }
-            if (typeof south === 'undefined' || position.latitude < south) {
-              south = position.latitude
+            if (typeof maxHeight === 'undefined' || position.height < maxHeight) {
+              maxHeight = position.height
             }
-            if (typeof east === 'undefined' || position.longitude > east) {
-              east = position.longitude
-            }
-            if (typeof north === 'undefined' || position.latitude > north) {
-              north = position.latitude
-            } 
           }
+          // set the average height
+          boundingBoxCenter.height = ((minHeight + maxHeight) / 2) + offsetZ;
           
-          camera.flyToRectangle({
-            destination : new Cesium.Rectangle(west, south, east, north),
-            complete : function() {
-              // fine tune view here
-              camera.zoomOut(8000.0);
-            }
+          // debugging rectangle
+          /*viewer.scene.primitives.add(new Cesium.RectanglePrimitive({
+              rectangle : boundingBox,
+              height : boundingBoxCenter.height
+          }));*/
+          
+          var boundingBoxCenterCartesian = Cesium.Ellipsoid.WGS84.cartographicToCartesian(boundingBoxCenter);
+          
+          camera.flyTo({
+            destination: boundingBoxCenterCartesian
           });
+          
+          return true; // disabled prevent default
         }
      
         var mappedTours = $.map(dataSource.entities.entities, function(entity) {
@@ -187,7 +203,8 @@ $(function() {
             id: entity.id,
             name: entity.name,
             description: entity.properties.description,
-            distance: entity.properties.distance
+            distance: entity.properties.distance,
+            link: entity.properties.link
           })
         });
         self.tours(mappedTours);
