@@ -126,7 +126,7 @@ $box: 4.5rem;
         color: $greydark;
       }
     }
-    &:hover, &.selected {
+    &:hover, &.hover, &.selected {
       background: fade-out($tertiary, .9);
       color: $black;
       .distance {

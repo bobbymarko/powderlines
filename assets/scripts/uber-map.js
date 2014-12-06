@@ -17,9 +17,9 @@ $(function() {
   
   
   /* Housekeeping */
-  var polylineWidth = 2;
-  var normalColor = Cesium.Color.YELLOW;
-  var highlightColor = new Cesium.Color(1.0, 0.5, 0.0, 1.0);
+  var polylineWidth = 3;
+  var normalStrokeColor = Cesium.Color.YELLOW;
+  var highlightStrokeColor = new Cesium.Color(1.0, 0.5, 0.0, 1.0);
   var minDistance = 0;
   var maxDistance = 9999999;
   var offsetZ = 5000
@@ -65,11 +65,15 @@ $(function() {
         //todo - add prefix to id
         $('#' + entity.id).trigger('click');
       }
-  });
-  
+  }); 
   
   var dataSource = new Cesium.GeoJsonDataSource();
-  dataSource.loadUrl('/assets/gpx/ski-tours-complete.geojson').then(function() {
+  dataSource.loadUrl('/assets/gpx/ski-tours-complete.geojson', {
+    stroke: normalStrokeColor,
+    fill: Cesium.Color.PINK,
+    strokeWidth: polylineWidth,
+    markerSymbol: '?'
+  }).then(function() {
     var entities = dataSource.entities.entities;
     knockItOut(); // we can do the knockout stuff now that the json data has loaded
   }).otherwise(function(error) {
@@ -79,6 +83,28 @@ $(function() {
   
   camera.lookAt(Cesium.Cartesian3.fromDegrees(-121.81263, 44, 200000),
   Cesium.Cartesian3.fromDegrees(-121.81263, 48.706652, 0), Cesium.Cartesian3.UNIT_Z);
+  
+  var ellipsoid = scene.globe.ellipsoid;
+  var labels = scene.primitives.add(new Cesium.LabelCollection());
+  label = labels.add();
+  var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+  handler.setInputAction(function(movement) {
+    var picked = scene.pick(movement.endPosition);
+    var cartesian = scene.camera.pickEllipsoid(movement.endPosition, ellipsoid);    
+    if (cartesian && picked && picked.id && picked.id.properties) {
+      label.show = true;
+      label.text = picked.id.properties.name;
+      label.position = cartesian;
+      label.font = "1.2rem pt_sans, 'Helvetica Neue', arial, sans-serif";
+      label.outlineWidth = 0;
+      label.horizontalOrigin = Cesium.HorizontalOrigin.CENTER;
+      label.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
+      $('#' + picked.id.id).addClass('hover');
+    } else {
+      label.show = false;
+      $('.left-panel .hover').removeClass('hover')
+    }
+  }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
   
   /* Knockout stuff */
   var knockItOut = function() {
@@ -148,19 +174,19 @@ $(function() {
           for (var i = 0; i < entities.length; i++) {
             var entity = entities[i];
             if (entity.polyline) {
-              entity.polyline.material = Cesium.ColorMaterialProperty.fromColor(normalColor);
+              entity.polyline.material = Cesium.ColorMaterialProperty.fromColor(normalStrokeColor);
             }
             if (entity.polygon) {
-              entity.polygon.material = Cesium.ColorMaterialProperty.fromColor(normalColor);
+              entity.polygon.material = Cesium.ColorMaterialProperty.fromColor(normalStrokeColor);
             }
           }
           
           if (cesiumTour.polyline) {
             var positions = cesiumTour.polyline.positions.getValue(new Cesium.JulianDate.now());
-            cesiumTour.polyline.material = Cesium.ColorMaterialProperty.fromColor(highlightColor);
+            cesiumTour.polyline.material = Cesium.ColorMaterialProperty.fromColor(highlightStrokeColor);
           } else {
             var positions = cesiumTour.polygon.positions.getValue(new Cesium.JulianDate.now());
-            cesiumTour.polygon.material = Cesium.ColorMaterialProperty.fromColor(highlightColor);
+            cesiumTour.polygon.material = Cesium.ColorMaterialProperty.fromColor(highlightStrokeColor);
           }
           
           // convert the positions to something we can work with

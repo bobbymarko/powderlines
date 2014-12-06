@@ -113,6 +113,7 @@ table {
   margin: 0 auto 2rem;
   @media #{$small-only} {
     background-size: 111px auto;
+    background-position: 0 -59px;
     height: 124px;
     width: 111px;
   }
