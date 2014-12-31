@@ -8,13 +8,13 @@ layout: default
         <h1>
           {{ page.title }}
           <small>
-          {{ page.distance }}
+          {{ page.distance | pluralize: "mile" }}
           </small>
         </h1>
         <ul class="inline-list">
-          <li>Elevation gain: {{ page.elevation-gain }}</li>
-          <li>Highest elevation: {{ page.highest-elevation }}</li>
-          <li>Starting elevation: {{ page.starting-elevation }}</li>
+          <li>Elevation gain: {{ page.elevation-gain | intcomma }} feet</li>
+          <li>Highest elevation: {{ page.highest-elevation | intcomma }} feet</li>
+          <li>Starting elevation: {{ page.starting-elevation | intcomma }} feet</li>
         </ul>
     </div>
   </div>

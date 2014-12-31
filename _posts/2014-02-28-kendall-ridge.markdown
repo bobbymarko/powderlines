@@ -23,10 +23,10 @@ gpx:
     source: http://www.everytrail.com/view_trip.php?trip_id=10060
     date: 2008-01-13 02:22:00 -800
     path: kendall-ridge-2.gpx
-distance: 4-8 miles
-highest-elevation: 5,597 feet
-starting-elevation: 2,981 feet
-elevation-gain: 1,000 - 3,000 feet
+distance: 4
+highest-elevation: 5597
+starting-elevation: 2981
+elevation-gain: 2000
 directions: From Seattle &mdash; Take I-90 to Snoqualmie Pass. There are two options for parking depending on your objective. One option is to park at the Summit West parking lot at Exit 52 and hike under the overpass to access the snow-covered access road for the PCT. The other option is to take Exit 54 and park at the Coal Creek Sno-park (Sno-park pass required). If you don't have a Sno-park pass you can park at the end of the Summit East parking lot and walk under the overpass to the trailhead.
 reports:
   - name: April 18, 2014, Kendall Knob

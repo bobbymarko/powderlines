@@ -5,7 +5,7 @@ date:   2014-04-02 15:15:55
 categories: tour
 image: mt-st-helens.jpg
 header-class: dark-image
-nwac: cascade-west-white-pass-south
+nwac: cascade-west-south
 lat: 46.1911
 long: -122.1945
 parking-lat: 46.1301
@@ -22,10 +22,10 @@ gpx:
     source: http://bobbyandmaura.com/snowshoeing/mount-st-helens
     date: 2014-04-13 02:22:00 -800
     path: mt-st-helens-1.gpx
-distance: 12 miles
-highest-elevation: 8,365 feet
-starting-elevation: 2,528 feet
-elevation-gain: 6,348 feet
+distance: 12
+highest-elevation: 8365
+starting-elevation: 2528
+elevation-gain: 6348
 directions: From Seattle - Head South on I-5 for 140 miles to Exit 22 for Dike Access Road. Turn left from the exit onto Dike Access Road and continue straight through two roundabouts. Turn left onto E Scott Ave and at the intersection near the little market take a left onto Lewis River Rd (503). When you get to the town of Cougar be sure to stop at the Lone Fir Resort to pick up your permits. It's on the left side of the road across the street from a gas station. Eventually Lewis River Rd turns into FR 90. Look out for FR 83 and take a left. It has signs for Ape Cave and the Climbers Bivouac. Follow 83 until you reach Marble Mountain Sno-park.
 reports:
   - name: April 13, 2014 - Mount St. Helens
