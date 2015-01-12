@@ -1,5 +1,49 @@
 // capture weather info for gps point from weather.gov
 $(function(){
+  $('.snotel').each(function() {
+    var $this = $(this);
+    var lat = $this.attr('data-lat');
+    var lon = $this.attr('data-long');
+    var elevation = $this.attr('data-elevation');
+    var url = 'http://api.powderlin.es/closest_stations?lat=' + lat + '&lng=' + lon + '&data=true&days=0&callback=?';
+    var $total = $this.find('.total-depth');
+    var $change = $this.find('.change-depth');
+    var $distance = $this.find('.distance');
+    var $elevation = $this.find('.elevation');
+    $.ajax({
+      url: url,
+      dataType: 'jsonp',
+      success: function(stations) {
+        console.log(stations, stations[0].data[0]["Snow Depth (in)"]); 
+        
+        if (stations[0].data[0]["Snow Depth (in)"]) {
+          var closestStation = stations[0]; 
+        } else if (stations[1].data[0]["Snow Depth (in)"]) {
+          var closestStation = stations[1];
+        } else if (stations[2].data[0]["Snow Depth (in)"]) {
+          var closestStation = stations[2];
+        } else {
+          var closestStation = null;
+        }
+        
+        if (closestStation) {
+          var stationTotalDepth = closestStation.data[0]["Snow Depth (in)"];
+          var stationChangeDepth = closestStation.data[0]["Change In Snow Depth (in)"];
+          var stationDistance = Math.round( closestStation.distance * 10 ) / 10;
+          var stationElevation = closestStation.station_information.elevation;
+          var elevationDifference = elevation - stationElevation;
+          
+          $total.text(stationTotalDepth + 'in');
+          $change.text(stationChangeDepth + 'in');
+          $distance.text(stationDistance + ' miles away');
+          $elevation.text(elevationDifference + ' feet away');
+        } else {
+          $this.hide();
+        }
+      }
+    });
+  });
+  
   $('.weathered').each(function() {
     var $this = $(this);
     var lat = $this.attr('data-lat');
