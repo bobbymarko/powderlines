@@ -40,7 +40,7 @@ $(function() {
     geocoder        : false,
     infoBox         : false,
     terrainProvider : new Cesium.CesiumTerrainProvider({
-        url : '//cesiumjs.org/stk-terrain/tilesets/world/tiles',
+        url : '//assets.agi.com/stk-terrain/v1/tilesets/world/tiles',
         credit : 'Routes plotted by <a href="http://erikhenne.com">Erik Henne</a>'
     })
   });

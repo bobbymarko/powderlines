@@ -9,7 +9,7 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
     <div class="row">
       <div class="medium-8 medium-offset-2 columns">
         <div class="logo">Powderlines</div>
-        <h3>Washington&rsquo;s best backcountry tours</h3>
+        <h1>Washington&rsquo;s best backcountry tours</h1>
         <p>Finding the best place to backcountry ski or splitboard can be difficult. Our goal is to make it easier to find great backcountry tours.</p>
         <a href="/map.html">Try our beta 3D map of Washington ski tours</a>
       </div>
@@ -29,21 +29,101 @@ title: Powderlines - The Pacific Northwest&rsquo;s best backcountry tours for th
 
 <div id="content">
   {% for post in site.posts %}
-    <div class="section tour" style="background-image:url(/assets/img/{{post.image}});">
+    <div id="{{ post.id | to_slug }}" class="tour" style="background-image:url(/assets/img/{{post.image}});" data-color="{{ post.color }}">
       <div class="row">
-        <div class="small-12 columns">
-          <div class="badge">
-            <a class="badge-inner" href="{{ post.url }}">
-              <div class="badge-background" style="background-image:url(/assets/img/{{post.image}});"></div>
-              {{ post.title | replace: 'to', '<span class="fancy">to</span>' }}
-              <small>Route info &rarr;</small>
-              <div class="snotel" data-lat="{{ post.parking-lat }}" data-long="{{ post.parking-long }}" data-elevation="{{ post.starting-elevation }}">
-                <small class="total-depth"></small>
-                <small class="change-depth"></small>
-                <small class="distance"></small>
-                <small class="elevation"></small>
-              </div>
-            </a>
+        <div class="small-8 columns">
+          <div class="cover">
+            <h1>
+              <a href="{{ post.url }}">{{ post.title | replace: 'to', '<span class="fancy">to</span>' }}</a>
+            </h1>
+            <span>Distance: {{ post.distance | pluralize: "mile" }}</span>
+            <span>Elevation gain: {{ post.elevation-gain | intcomma }} feet</span>
+            <span>Highest elevation: {{ post.highest-elevation | intcomma }} feet</span>
+            <span>Starting elevation: {{ post.starting-elevation | intcomma }} feet</span>
+          </div>
+        </div>
+        <style>
+          #{{ post.id | to_slug }} .sidebar {
+            background: {{ post.color | transparentize: 0.8 }};
+          }
+          #{{ post.id | to_slug }} .sidebar table thead {
+            background: {{ post.color | transparentize: 0.8, -0.2 }};
+          }
+          #{{ post.id | to_slug }} .sidebar table tbody td,
+          #{{ post.id | to_slug }} .sidebar table tbody th {
+            border-bottom: 1px solid {{ post.color | transparentize: 1 }};
+          }
+        </style>
+        <div class="small-4 columns sidebar">
+          <div class="snotel chart" data-lat="{{ post.parking-lat }}" data-long="{{ post.parking-long }}" data-elevation="{{ post.starting-elevation }}">
+            <h5>Snow</h5>
+            <div class="ct-chart"></div>
+            <!--
+            <p class="total-depth"></p>
+            <p class="change-depth"></p>
+            <p class="distance"></p>
+            <p class="elevation"></p>
+            -->
+          </div>
+          <div class="avalanche-info chart" data-zone="{{ post.nwac }}">
+            <h5>Avalanche</h5>
+            <table>
+              <thead>
+                <tr>
+                  <th class="day1_day"></th>
+                  <th class="day2_day"></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="day1_danger_elev_high"></td>
+                  <td class="day2_danger_elev_high"></td>
+                  <th>Above treeline</th>
+                </tr>
+                <tr>
+                  <td class="day1_danger_elev_middle"></td>
+                  <td class="day2_danger_elev_middle"></td>
+                  <th>Near treeline</th>
+                </tr>
+                <tr>
+                  <td class="day1_danger_elev_low"></td>
+                  <td class="day2_danger_elev_low"></td>
+                  <th>Below treeline</th>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="weather-info chart" data-lat="{{ post.parking-lat }}" data-long="{{ post.parking-long }}">
+            <h5>Weather</h5>
+            <table>
+              <thead>
+                <tr class="days">
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="highs">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr class="lows">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

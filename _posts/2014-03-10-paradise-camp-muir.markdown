@@ -4,6 +4,7 @@ title:  "Paradise"
 date:   2014-03-10 15:15:55
 categories: tour
 image: glacier-vista.jpg
+color: "#d6e1e8"
 nwac: cascade-west-south
 lat: 46.8354
 long: -121.7323

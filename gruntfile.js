@@ -36,9 +36,9 @@ grunt.initConfig({
   uglify: {
     app: {
       files: {
-        'assets/js/main.js': ['components/jquery/dist/jquery.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js', 'assets/scripts/jquery.oembed.js', 'assets/scripts/video-player.js', 'assets/scripts/scroller.js', 'assets/scripts/tracking.js'],
+        'assets/js/main.js': ['components/jquery/dist/jquery.js', 'components/chartist/dist/chartist.js', 'assets/scripts/skycons.js', 'assets/scripts/weather.js', 'assets/scripts/mapped.js', 'assets/scripts/jquery.oembed.js', 'assets/scripts/video-player.js', 'assets/scripts/scroller.js', 'assets/scripts/tracking.js'],
         'assets/js/uber-map.js': ['assets/scripts/smart-resize.js','assets/scripts/uber-map.js'],
-        'assets/js/api-docs.js': ['assets/scripts/flotr2.js', 'assets/scripts/api-docs.js']
+        'assets/js/api-docs.js': ['assets/scripts/api-docs.js']
       }
     }
   },

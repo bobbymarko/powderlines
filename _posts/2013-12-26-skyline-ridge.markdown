@@ -4,6 +4,7 @@ title:  "Skyline Ridge"
 date:   2013-12-26 15:15:55
 categories: tour
 image: skyline-ridge.jpg
+color: "#d9d7d5"
 nwac: cascade-west-stevens-pass
 lat: 47.761125
 long: -121.101716

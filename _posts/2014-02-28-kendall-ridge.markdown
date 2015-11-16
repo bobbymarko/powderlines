@@ -4,6 +4,7 @@ title:  "Kendall Ridge"
 date:   2014-02-28 15:15:55
 categories: tour
 image: kendall-ridge.jpg
+color: "#60798f"
 header-class: dark-image
 nwac: cascade-west-snoqualmie-pass
 lat: 47.4269

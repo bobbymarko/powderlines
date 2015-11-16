@@ -4,9 +4,11 @@ $rhythm-unit: 'rem';
 //@import "compass/typography/vertical_rhythm";
 @import "fonts";
 @import "settings";
-@import "cesium";
+@import "cesium"; // compiled
 @import "3d-map";
 @import "foundation";
+
+@import "chartist"; // compiled sass
 
 @import "compass/utilities/sprites";
 $element-sprite: sprite-map("elements-1x/*.png", $spacing: 5px);
@@ -27,6 +29,10 @@ $element-sprite: sprite-map("elements-1x/*.png", $spacing: 5px);
 
 html, body {
   height: 100%;
+}
+
+h1 {
+  font-size: 3rem;
 }
 
 .no-scroll { overflow: hidden; }
@@ -80,7 +86,6 @@ table {
 .hero-background {
   background: url(/assets/img/hero-background.jpg) top center no-repeat;
   background-size: cover;
-  background-attachment: fixed;
   position: absolute;
   top: 0;
   left: 0;
@@ -93,7 +98,7 @@ table {
 .hero {
   background: url(/assets/img/powder-texture@1x.png);
   text-align: center;
-  h3 {
+  h1 {
     color: $white;
   }
   p {
@@ -186,52 +191,106 @@ table {
 
 .tour {
   background-size: cover;
-  text-align: center;
-}
-
-.badge {
-  display: inline-block;
+  background-position: center bottom;
   position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-  @include transform(translate3d(0,0,0));
-  .badge-background {
-    @include transform(scaleY(-1));
-    opacity: .1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
+  color: $white;
+  a {
+    color: $white;
   }
-  .badge-inner {
-    width: 32rem;
-    height: 32rem;
-    font-size: 4rem;
-    line-height: 1.3;
-    @media #{$small-only} {
-      font-size: 2rem;
-      width: 15rem;
-      height: 15rem;
+  .columns {
+    min-height: 100vh;
+  }
+  .chart {
+    height: 33.33333333333333vh;
+    /*border-bottom: 1px solid rgba(0,0,0,0.2);*/
+    position: relative;
+    &:last-child {
+      border-bottom: 0;
     }
-    background-color: fade-out($white, .15);
-    @include transition(all 300ms ease-out);
-    display: table-cell;
-    vertical-align: middle;
-    color: $greydark;
-    &:hover {
-      background-color: fade-out($white, .4);
-      color: $white;
-    }
-    small {
+  }
+  .ct-chart {
+    height: 100%;
+  }
+  .cover {
+    position: absolute;
+    padding: 3rem;
+    width: 100%;
+    @include background-image(linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.2)));
+    bottom: 0;
+    left: 0;
+    a {
       display: block;
-      font-family: $narrow-sans-serif-font;
+    }
+  }
+  .sidebar {
+    background: rgba(255, 255, 255, 0.5);  /* overridden with inline style */
+    position: relative;
+    padding: 0;
+    &:before {
+      content: '';
+      display: block;
+      width: 5rem;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: -5rem;
+      @include background-image(linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.2)));
+    }
+    h5 {
+      color: $white;
+      font-family: $sans-serif-font;
+      @include rotateZ(270deg);
+      top: 50%;
+      left: -4.8rem;
+      position: absolute;
+      width: 7rem;
+      height: 0;
+      text-align: center;
       text-transform: uppercase;
-      font-size: 1rem;
-      opacity: 0.5;
+      font-size: .6rem;
+      letter-spacing: 0.08rem;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    table {
+      background: transparent;
+      margin-bottom: 0;
+      border: none;
+      table-layout: fixed;
+      border-spacing: 0;
+      height: 100%;
+      th, td {
+        text-align: center;
+        color: $white;
+        vertical-align: middle;
+      }
+      th {
+        font-size: 0.8rem;
+      }
+      td {
+        font-family: $serif-font;
+        font-size: 1rem;
+      }
+      thead {
+        background: rgba(0,0,0,0.2); /* overridden with inline style */
+        text-transform: uppercase;
+      }
+      thead tr th,
+      thead tr td {
+        font-size: 0.6rem;
+      }
+      tbody td,
+      tbody th {
+        border-bottom: 1px solid rgba(0,0,0,0.2); /* overridden with inline style */
+      }
+      tbody tr:last-child td,
+      tbody tr:last-child th {
+        border-bottom: none !important;
+      }
+      tr:nth-of-type(even) {
+        background: transparent;
+      }
     }
   }
 }
@@ -474,9 +533,9 @@ table {
 
 .jelly-belly {
   border-style: solid;
-  border-color: $greylight;
+  border-color: #C2DBDB;
   border-width: 0.4rem 0;
-  background: $white;
+  background: #D7EAEA;
   text-align: center;
   @media #{$small-only} {
     text-align: left;

@@ -5,6 +5,7 @@ date:   2014-04-02 15:15:55
 categories: tour
 image: mt-st-helens.jpg
 header-class: dark-image
+color: "#708bb3"
 nwac: cascade-west-south
 lat: 46.1911
 long: -122.1945
