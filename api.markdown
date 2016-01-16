@@ -151,6 +151,10 @@ The response includes basic station information in addition to an array of snow 
     <td>Change In Snow Depth (in)</td>
     <td>The change in the snow depth from the last measurement (typically the past 24 hours).</td>
   </tr>
+  <tr>
+    <td>Observed Air Temperature (degrees farenheit)</td>
+    <td>The observed air temperature, in degrees farenheit.</td>
+  </tr>
 </table>
 
 **Sample calls:**
@@ -175,14 +179,16 @@ The response includes basic station information in addition to an array of snow 
             "Snow Water Equivalent (in)":"0.0",
             "Change In Snow Water Equivalent (in)":"0.0",
             "Snow Depth (in)":"0",
-            "Change In Snow Depth (in)":"0"
+            "Change In Snow Depth (in)":"0",
+            "Air Temperature Observed (degF)":"30"
         },
         {
             "Date":"2014-07-01",
             "Snow Water Equivalent (in)":"0.0",
             "Change In Snow Water Equivalent (in)":"0.0",
             "Snow Depth (in)":"0",
-            "Change In Snow Depth (in)":"0"
+            "Change In Snow Depth (in)":"0",
+            "Air Temperature Observed (degF)":"30"
         },
         {
             ...
@@ -253,6 +259,10 @@ The response is an array of stations including their basic information in additi
     <td>Change In Snow Depth (in)</td>
     <td>The change in the snow depth from the last measurement (typically the past 24 hours).</td>
   </tr>
+    <tr>
+    <td>Observed Air Temperature (degrees farenheit)</td>
+    <td>The observed air temperature, in degrees farenheit.</td>
+  </tr>
 </table>
 
 **Sample call:** <a href="http://api.powderlin.es/closest_stations?lat=47.3974&lng=-121.3958&data=true&days=3&count=3">http://api.powderlin.es/closest_stations?lat=47.3974&lng=-121.3958&data=true&days=3&count=3</a>
@@ -276,14 +286,16 @@ The response is an array of stations including their basic information in additi
                 "Snow Water Equivalent (in)":"0.0",
                 "Change In Snow Water Equivalent (in)":"0.0",
                 "Snow Depth (in)":"0",
-                "Change In Snow Depth (in)":"0"
+                "Change In Snow Depth (in)":"0",
+                "Air Temperature Observed (degF)":"30"
             },
             {
                 "Date":"2014-07-01",
                 "Snow Water Equivalent (in)":"0.0",
                 "Change In Snow Water Equivalent (in)":"0.0",
                 "Snow Depth (in)":"0",
-                "Change In Snow Depth (in)":"0"
+                "Change In Snow Depth (in)":"0",
+                "Air Temperature Observed (degF)":"30"
             },
             {
                 ...
